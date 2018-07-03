@@ -11,9 +11,10 @@ public class BibliotecaApp {
 
     public static ArrayList<Book> getAvailableBooks(){
         ArrayList<Book> availableBooks = new ArrayList<Book>();
-        Book harryPotter = new Book();
-        harryPotter.name = "Harry Potter";
-        availableBooks.add(harryPotter);
+        Book harryPotterBook = new Book(){{ name = "Harry Potter"; }};
+        Book gameOfThronesBook = new Book(){{ name = "Game of Thrones"; }};
+        availableBooks.add(harryPotterBook);
+        availableBooks.add(gameOfThronesBook);
         return availableBooks;
     }
 

@@ -12,6 +12,8 @@ public class bookTests {
 
     @Test
     public void testListBooks() {
-
+        String expectedOutput = BibliotecaApp.availableBooksAsString();
+        String actualOutput = getBibliotecaOutput.asString();
+        assertTrue(actualOutput.contains(expectedOutput));
     }
 }
