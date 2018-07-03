@@ -12,7 +12,7 @@ public class ExampleTest {
 
     @Test
     public void testWelcomeMessage() {
-        String expectedWelcomeMessage = "Hello, world!";
+        String expectedWelcomeMessage = "Hello! Welcome to Biblioteca.";
         String actualWelcomeMessage = null;
         PrintStream originalOut = System.out;
 
