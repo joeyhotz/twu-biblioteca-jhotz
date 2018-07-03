@@ -19,7 +19,7 @@ public class welcomeMessageTests {
 
     @Test
     public void testWelcomeMessageString() {
-        String expectedWelcomeMessage = "Hello! Welcome to Biblioteca.\n\nHere are our list of books: \n";
+        String expectedWelcomeMessage = "Hello! Welcome to Biblioteca.\nWhat would you like to do?\n";
         String actualWelcomeMessage = BibliotecaApp.stringWelcomeMessage();
         assertEquals(expectedWelcomeMessage, actualWelcomeMessage);
     }
