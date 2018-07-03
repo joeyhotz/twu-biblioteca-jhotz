@@ -7,6 +7,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class WelcomeMessageTests {
 
@@ -24,7 +25,6 @@ public class WelcomeMessageTests {
         } catch (Exception ex){
             System.err.println("Test unable to get output from main");
         }
-
-        assertEquals(expectedWelcomeMessage, actualWelcomeMessage);
+        assertTrue(actualWelcomeMessage.contains(expectedWelcomeMessage));
     }
 }
