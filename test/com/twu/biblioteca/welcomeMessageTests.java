@@ -12,7 +12,7 @@ public class welcomeMessageTests {
 
     @Test
     public void testMenuDisplaysWelcomeMessage() {
-        String expectedOutputWelcomeMessage = BibliotecaApp.stringWelcomeMessage();
+        String expectedOutputWelcomeMessage = BibliotecaApp.returnWelcomeMessage();
         String actualOutput = getBibliotecaOutput.asString();
         assertTrue(actualOutput.contains(expectedOutputWelcomeMessage));
     }
@@ -20,7 +20,7 @@ public class welcomeMessageTests {
     @Test
     public void testWelcomeMessageString() {
         String expectedWelcomeMessage = "Hello! Welcome to Biblioteca.\nWhat would you like to do?\n";
-        String actualWelcomeMessage = BibliotecaApp.stringWelcomeMessage();
+        String actualWelcomeMessage = BibliotecaApp.returnWelcomeMessage();
         assertEquals(expectedWelcomeMessage, actualWelcomeMessage);
     }
 }
