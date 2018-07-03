@@ -18,11 +18,21 @@ public class menuTests {
     @Test
     public void testMenuOptionsContainListCheckoutReturn() {
         for (MenuOption menuOption: Menu.menuOptions) {
-            if (menuOption.getString() == "List Books" || menuOption.getString() == "Checkout Book" || menuOption.getString() == "Return Book") {
+            if (menuOption.getString() == "List Books" || menuOption.getString() == "Checkout Book" || menuOption.getString() == "Return Book" || menuOption.getString() == "Quit") {
                 //do nothing, this is good
             } else {
                 fail("Unrecognised menu option");
             }
         }
+    }
+
+    @Test
+    public void testMenuStringGeneration() {
+        String expectedOutput = "1: List Books\n" +
+                "2: Checkout Book\n" +
+                "3: Return Book\n" +
+                "4: Quit\n";
+        String actualOutput = Menu.generateMenuStringToDisplay();
+        assertEquals(expectedOutput, actualOutput);
     }
 }

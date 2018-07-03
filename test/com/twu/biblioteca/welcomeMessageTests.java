@@ -11,13 +11,6 @@ import static org.junit.Assert.*;
 public class welcomeMessageTests {
 
     @Test
-    public void testMenuDisplaysWelcomeMessage() {
-        String expectedOutputWelcomeMessage = BibliotecaApp.returnWelcomeMessage();
-        String actualOutput = getBibliotecaOutput.asString();
-        assertTrue(actualOutput.contains(expectedOutputWelcomeMessage));
-    }
-
-    @Test
     public void testWelcomeMessageString() {
         String expectedWelcomeMessage = "Hello! Welcome to Biblioteca.\nWhat would you like to do?\n";
         String actualWelcomeMessage = BibliotecaApp.returnWelcomeMessage();
