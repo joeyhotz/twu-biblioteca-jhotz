@@ -5,21 +5,20 @@ import java.util.ArrayList;
 public class BibliotecaApp {
 
     public static void main(String[] args) {
-        System.out.print("Hello! Welcome to Biblioteca.\n\nHere are our list of books: \n");
-        System.out.print(availableBooksAsString());
+        System.out.print(stringWelcomeMessage());
+        System.out.print(stringListOfBooks(Book.listOfBooksForDemo()));
     }
 
-    public static ArrayList<Book> getAvailableBooks(){
-        ArrayList<Book> availableBooks = new ArrayList<Book>();
-        Book harryPotterBook = new Book(){{ name = "Harry Potter"; }};
-        Book gameOfThronesBook = new Book(){{ name = "Game of Thrones"; }};
-        availableBooks.add(harryPotterBook);
-        availableBooks.add(gameOfThronesBook);
-        return availableBooks;
+    public static String stringWelcomeMessage() {
+        return "Hello! Welcome to Biblioteca.\n\nHere are our list of books: \n";
     }
 
-    public static String availableBooksAsString(){
-        ArrayList<Book> availableBooks = getAvailableBooks();
+    public static String stringListOfBooks(ArrayList<Book> books) {
+        return availableBooksAsString(books);
+    }
+
+    public static String availableBooksAsString(ArrayList<Book> books){
+        ArrayList<Book> availableBooks = books;
         String output = "";
         for (Book book: availableBooks) {
             output += book.name + ", ";
