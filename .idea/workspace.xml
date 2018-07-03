@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fbaf9ad1-ef9f-4763-b0bc-8015deaafe4a" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/test/com/twu/biblioteca/ExampleTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/com/twu/biblioteca/ExampleTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/com/twu/biblioteca/ExampleTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/com/twu/biblioteca/WelcomeMessageTests.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -27,11 +28,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ExampleTest.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/test/com/twu/biblioteca/ExampleTest.java">
+      <file leaf-file-name="WelcomeMessageTests.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/test/com/twu/biblioteca/WelcomeMessageTests.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="13" column="38" lean-forward="true" selection-start-line="13" selection-start-column="38" selection-end-line="13" selection-end-column="38" />
+            <state relative-caret-position="187">
+              <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -41,6 +42,13 @@
       </file>
     </leaf>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -49,6 +57,8 @@
       <list>
         <option value="$PROJECT_DIR$/src/com/twu/biblioteca/BibliotecaApp.java" />
         <option value="$PROJECT_DIR$/test/com/twu/biblioteca/ExampleTest.java" />
+        <option value="$PROJECT_DIR$/test/com/twu/biblioteca/SystemOutResource.java" />
+        <option value="$PROJECT_DIR$/test/com/twu/biblioteca/WelcomeMessageTests.java" />
       </list>
     </option>
   </component>
@@ -56,6 +66,9 @@
     <option name="x" value="-12" />
     <option name="width" value="1941" />
     <option name="height" value="2172" />
+  </component>
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -68,6 +81,11 @@
             <path>
               <item name="biblioteca" type="b2602c69:ProjectViewProjectNode" />
               <item name="twu-biblioteca-jhotz" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="biblioteca" type="b2602c69:ProjectViewProjectNode" />
+              <item name="twu-biblioteca-jhotz" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="biblioteca" type="b2602c69:ProjectViewProjectNode" />
@@ -118,11 +136,11 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.ExampleTest.testWelcomeMessage">
+  <component name="RunManager" selected="JUnit.WelcomeMessageTests.testWelcomeMessage">
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
     </configuration>
-    <configuration name="ExampleTest.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="WelcomeMessageTests.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="biblioteca" />
       <extension name="coverage">
         <pattern>
@@ -133,7 +151,7 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="com.twu.biblioteca" />
-      <option name="MAIN_CLASS_NAME" value="com.twu.biblioteca.ExampleTest" />
+      <option name="MAIN_CLASS_NAME" value="com.twu.biblioteca.WelcomeMessageTests" />
       <option name="METHOD_NAME" value="test" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
@@ -145,7 +163,7 @@
       </option>
       <patterns />
     </configuration>
-    <configuration name="ExampleTest.testWelcomeMessage" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="WelcomeMessageTests.testWelcomeMessage" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="biblioteca" />
       <extension name="coverage">
         <pattern>
@@ -156,7 +174,7 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="com.twu.biblioteca" />
-      <option name="MAIN_CLASS_NAME" value="com.twu.biblioteca.ExampleTest" />
+      <option name="MAIN_CLASS_NAME" value="com.twu.biblioteca.WelcomeMessageTests" />
       <option name="METHOD_NAME" value="testWelcomeMessage" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
@@ -207,13 +225,13 @@
       <listeners />
     </configuration>
     <list>
-      <item itemvalue="JUnit.ExampleTest.test" />
-      <item itemvalue="JUnit.ExampleTest.testWelcomeMessage" />
+      <item itemvalue="JUnit.WelcomeMessageTests.test" />
+      <item itemvalue="JUnit.WelcomeMessageTests.testWelcomeMessage" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ExampleTest.testWelcomeMessage" />
-        <item itemvalue="JUnit.ExampleTest.test" />
+        <item itemvalue="JUnit.WelcomeMessageTests.testWelcomeMessage" />
+        <item itemvalue="JUnit.WelcomeMessageTests.test" />
       </list>
     </recent_temporary>
   </component>
@@ -231,15 +249,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="ExampleTest_test - 2018.07.03 at 15h 47m 15s.xml">
-      <configuration name="ExampleTest.test" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ExampleTest_testWelcomeMessage - 2018.07.03 at 15h 58m 46s.xml">
-      <configuration name="ExampleTest.testWelcomeMessage" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ExampleTest_testWelcomeMessage - 2018.07.03 at 16h 03m 45s.xml">
-      <configuration name="ExampleTest.testWelcomeMessage" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="ExampleTest_testWelcomeMessage - 2018.07.03 at 16h 04m 09s.xml">
       <configuration name="ExampleTest.testWelcomeMessage" configurationId="JUnit" />
     </history-entry>
@@ -254,6 +263,21 @@
     </history-entry>
     <history-entry file="ExampleTest_testWelcomeMessage - 2018.07.03 at 16h 06m 11s.xml">
       <configuration name="ExampleTest.testWelcomeMessage" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="WelcomeMessageTests_testWelcomeMessage - 2018.07.03 at 16h 15m 05s.xml">
+      <configuration name="WelcomeMessageTests.testWelcomeMessage" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="WelcomeMessageTests_testWelcomeMessage - 2018.07.03 at 16h 15m 50s.xml">
+      <configuration name="WelcomeMessageTests.testWelcomeMessage" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="WelcomeMessageTests_testWelcomeMessage - 2018.07.03 at 16h 16m 13s.xml">
+      <configuration name="WelcomeMessageTests.testWelcomeMessage" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="WelcomeMessageTests_testWelcomeMessage - 2018.07.03 at 16h 19m 37s.xml">
+      <configuration name="WelcomeMessageTests.testWelcomeMessage" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="WelcomeMessageTests_testWelcomeMessage - 2018.07.03 at 16h 22m 01s.xml">
+      <configuration name="WelcomeMessageTests.testWelcomeMessage" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
@@ -279,7 +303,7 @@
       <window_info anchor="right" id="Ant Build" order="6" weight="0.25" />
       <window_info id="UI Designer" order="4" />
       <window_info anchor="right" id="Theme Preview" order="4" />
-      <window_info anchor="bottom" id="Debug" order="6" weight="0.4" />
+      <window_info anchor="bottom" id="Debug" order="6" visible="true" weight="0.3995451" />
       <window_info id="Favorites" order="5" side_tool="true" />
       <window_info anchor="bottom" id="Find" order="5" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="5" type="SLIDING" weight="0.4" />
@@ -296,17 +320,27 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/test/com/twu/biblioteca/ExampleTest.java</url>
+          <url>file://$PROJECT_DIR$/test/com/twu/biblioteca/WelcomeMessageTests.java</url>
           <line>13</line>
-          <properties class="com.twu.biblioteca.ExampleTest" method="testWelcomeMessage">
+          <properties class="com.twu.biblioteca.WelcomeMessageTests">
             <option name="EMULATED" value="true" />
           </properties>
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="1" />
+      <option name="time" value="2" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/test/com/twu/biblioteca/SystemOutResource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" selection-start-line="14" selection-end-line="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/twu/biblioteca/BibliotecaApp.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -318,10 +352,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/com/twu/biblioteca/ExampleTest.java">
+    <entry file="file://$PROJECT_DIR$/test/com/twu/biblioteca/WelcomeMessageTests.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="38" lean-forward="true" selection-start-line="13" selection-start-column="38" selection-end-line="13" selection-end-column="38" />
+        <state relative-caret-position="187">
+          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
