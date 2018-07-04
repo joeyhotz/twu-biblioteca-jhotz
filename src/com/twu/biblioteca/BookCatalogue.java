@@ -97,6 +97,7 @@ public class BookCatalogue {
     }
 
     public boolean bookIsCheckedOut(Book bookToCheck) {
+        if (bookToCheck == null) return false;
         for (Book book: returnAllCheckedOutBooks()) {
             if (book.name.equals(bookToCheck.name)) {
                 return true;

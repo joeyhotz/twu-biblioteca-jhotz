@@ -34,14 +34,15 @@ public class BibliotecaApp {
         switch (input) {
             case "1": output = bookCatalogue.generateFormattedStringAllAvailableBooks();
                 break;
-            case "2": String bookTitleUserInput = returnUserInput("Enter your book title here: ");
-                output = bookCatalogue.checkOutBook(bookTitleUserInput);
+            case "2": String bookTitleUserInputCheckOut = returnUserInput("Enter your book title here: ");
+                output = bookCatalogue.checkOutBook(bookTitleUserInputCheckOut);
                 break;
-            case "3":
+            case "3": String bookTitleUserInputCheckIn = returnUserInput("Enter your book title here: ");
+                output = bookCatalogue.checkInBook(bookTitleUserInputCheckIn);
                 break;
             case "4": output = "Goodbye!";
                 break;
-            default: output = "Select a valid option! Try again.";
+            default: output = "Select a valid option! Try again:";
                 break;
         }
         return output;
