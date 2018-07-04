@@ -11,7 +11,7 @@ public class BibliotecaApp {
     }
 
     public static void displayMenu() {
-        printToConsole(returnWelcomeMessage());
+        printToConsole("Hello! Welcome to Biblioteca.\n\nWhat would you like to do?\n\n");
         String res = "";
         while (res != "Goodbye!") {
             printToConsole(generateMenuStringToDisplay());
@@ -55,11 +55,6 @@ public class BibliotecaApp {
             output += menuOption.getInt() + ": " + menuOption.getString() + "\n";
         }
         return output;
-    }
-
-
-    public static String returnWelcomeMessage() {
-        return "Hello! Welcome to Biblioteca.\n\nWhat would you like to do?\n\n";
     }
 
     public static void printToConsole(String out) {
