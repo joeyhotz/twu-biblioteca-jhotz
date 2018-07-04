@@ -32,6 +32,10 @@ public class BookCatalogue {
         return availableBooks;
     }
 
+    public ArrayList<Book> returnAllCheckedOutBooks() {
+        return checkedOutBooks;
+    }
+
     public String generateFormattedStringAllAvailableBooks() {
         String format = "%-" + getMaxNameLengthForPrintFormatting() + "s %-30s %-20s\n";
         String output = String.format(format, "BOOK NAME", "AUTHOR", "YEAR PUBLISHED") + "\n";
@@ -42,38 +46,35 @@ public class BookCatalogue {
         return output;
     }
 
-    public ArrayList<Book> returnAllCheckedOutBooks() {
-        return checkedOutBooks;
-    }
 
-    public String checkOutBook(String bookTitle) {
+    public String handleCheckOutBook(String bookTitle) {
         Book book = findBookByBookTitle(bookTitle);
         if (bookIsAvailable(book)) {
-            this.availableBooks.remove(book);
-            this.checkedOutBooks.add(book);
+            checkOutBook(book);
             return("Thank you! Enjoy the book.");
         } else {
             return("That book is not available.");
         }
     }
 
-    public String checkInBook(String bookTitle) {
+    private void checkOutBook(Book book) {
+        this.availableBooks.remove(book);
+        this.checkedOutBooks.add(book);
+    }
+
+    public String handleCheckInBook(String bookTitle) {
         Book book = findBookByBookTitle(bookTitle);
         if (bookIsCheckedOut(book)) {
-            this.checkedOutBooks.remove(book);
-            this.availableBooks.add(book);
+            checkInBook(book);
             return("Thank you for returning the book.");
         } else {
             return("That is not a valid book to return.");
         }
     }
 
-    public int getMaxNameLengthForPrintFormatting() {
-        int max = 0;
-        for (Book book: returnAllAvailableBooks()) {
-            if (book.name.length() > max) max = book.name.length();
-        }
-        return max + 10;
+    private void checkInBook(Book book) {
+        this.checkedOutBooks.remove(book);
+        this.availableBooks.add(book);
     }
 
     public Book findBookByBookTitle(String bookTitle) {
@@ -103,6 +104,14 @@ public class BookCatalogue {
             }
         }
         return false;
+    }
+
+    public int getMaxNameLengthForPrintFormatting() {
+        int max = 0;
+        for (Book book: returnAllAvailableBooks()) {
+            if (book.name.length() > max) max = book.name.length();
+        }
+        return max + 10;
     }
 
 }

@@ -1,6 +1,5 @@
 package com.twu.biblioteca;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class BibliotecaApp {
@@ -17,30 +16,33 @@ public class BibliotecaApp {
         while (res != "Goodbye!") {
             printToConsole(generateMenuStringToDisplay());
             printToConsole("Enter a number here to select an option: ");
-            res = handleInput(returnUserInput());
+            res = handleInputAndReturnResponse(returnUserInput());
             printToConsole("\n" + res + "\n");
         }
     }
 
-    private static String handleInput(String input) {
-        String res = null;
+    private static String handleInputAndReturnResponse(String input) {
         switch (input) {
-            case "1": res = bookCatalogue.generateFormattedStringAllAvailableBooks();
-                break;
-            case "2":
-                printToConsole("Enter your book title here: ");
-                res = bookCatalogue.checkOutBook(returnUserInput());
-                break;
-            case "3":
-                printToConsole("Enter your book title here: ");
-                res = bookCatalogue.checkInBook(returnUserInput());
-                break;
-            case "4": res = "Goodbye!";
-                break;
-            default: res = "Select a valid option! Try again:";
-                break;
+            case "1": return handleListBooks();
+            case "2": return handleBookCheckOut();
+            case "3": return handleBookCheckIn();
+            case "4": return "Goodbye!";
+            default:  return "Select a valid option! Try again:";
         }
-        return res;
+    }
+
+    private static String handleListBooks() {
+        return bookCatalogue.generateFormattedStringAllAvailableBooks();
+    }
+
+    private static String handleBookCheckIn() {
+        printToConsole("Enter your book title here: ");
+        return bookCatalogue.handleCheckInBook(returnUserInput());
+    }
+
+    private static String handleBookCheckOut() {
+        printToConsole("Enter your book title here: ");
+        return bookCatalogue.handleCheckOutBook(returnUserInput());
     }
 
     public static String returnUserInput() {
