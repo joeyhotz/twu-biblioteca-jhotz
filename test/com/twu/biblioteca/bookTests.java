@@ -2,20 +2,18 @@ package com.twu.biblioteca;
 
 import org.junit.Test;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
 
 public class bookTests {
+    Book gotBook = new Book("A Game of Thrones", "George R. R. Martin", "01.08.1996");
+    Book hitchhickersBook = new Book("The Hitchhiker's Guide to the Galaxy", "Douglas Adam", "12.10.1979");
+    Book harryPotterBook = new Book("Harry Potter and The Philosophers Stone", "J.K. Rowling", "26.06.1997");
 
     @Test
     public void testReturnsAllBooks() {
-        Book gotBook = new Book("A Game of Thrones", "George R. R. Martin", "01.08.1996");
-        Book hitchhickersBook = new Book("The Hitchhiker's Guide to the Galaxy ", "Douglas Adam", "12.10.1979");
-        Book harryPotterBook = new Book("Harry Potter: The Philosophers Stone", "J.K. Rowling", "26.06.1997");
-
         ArrayList<Book> availableBooks = new ArrayList<>();
         availableBooks.add(gotBook);
         availableBooks.add(hitchhickersBook);
@@ -33,10 +31,6 @@ public class bookTests {
 
     @Test
     public void testReturnsAllAvailableBooks() {
-        Book gotBook = new Book("A Game of Thrones", "George R. R. Martin", "01.08.1996");
-        Book hitchhickersBook = new Book("The Hitchhiker's Guide to the Galaxy ", "Douglas Adam", "12.10.1979");
-        Book harryPotterBook = new Book("Harry Potter: The Philosophers Stone", "J.K. Rowling", "26.06.1997");
-
         ArrayList<Book> availableBooks = new ArrayList<>();
         availableBooks.add(gotBook);
         availableBooks.add(hitchhickersBook);
@@ -53,10 +47,6 @@ public class bookTests {
 
     @Test
     public void testCanCheckoutBookAndCatalogueReflectsThis() {
-        Book gotBook = new Book("A Game of Thrones", "George R. R. Martin", "01.08.1996");
-        Book hitchhickersBook = new Book("The Hitchhiker's Guide to the Galaxy ", "Douglas Adam", "12.10.1979");
-        Book harryPotterBook = new Book("Harry Potter: The Philosophers Stone", "J.K. Rowling", "26.06.1997");
-
         ArrayList<Book> availableBooks = new ArrayList<>();
         availableBooks.add(gotBook);
         availableBooks.add(hitchhickersBook);
@@ -82,10 +72,6 @@ public class bookTests {
 
     @Test
     public void testCanCheckinBookAndCatalogueReflectsThis() {
-        Book gotBook = new Book("A Game of Thrones", "George R. R. Martin", "01.08.1996");
-        Book hitchhickersBook = new Book("The Hitchhiker's Guide to the Galaxy ", "Douglas Adam", "12.10.1979");
-        Book harryPotterBook = new Book("Harry Potter: The Philosophers Stone", "J.K. Rowling", "26.06.1997");
-
         ArrayList<Book> availableBooks = new ArrayList<>();
         availableBooks.add(hitchhickersBook);
         availableBooks.add(harryPotterBook);
@@ -107,6 +93,36 @@ public class bookTests {
 
         assertEquals(expectedAllAvailableBooks, actualAllAvailableBooks);
         assertEquals(expectedCheckedOutBooks, actualCheckedOutBooks);
+
     }
 
+    @Test
+    public void testGeneratedStringAllAvailableBooks() {
+        ArrayList<Book> availableBooks = new ArrayList<>();
+        availableBooks.add(hitchhickersBook);
+        availableBooks.add(harryPotterBook);
+        BookCatalogue bookCatalogue = new BookCatalogue(availableBooks, null);
+
+        String actualOutputString = bookCatalogue.generateFormattedStringAllAvailableBooks();
+        String format = "%-" + bookCatalogue.getMaxNameLengthForPrintFormatting() + "s %-30s %-20s\n";
+        String expectedOutputString = String.format(format, "BOOK NAME", "AUTHOR", "YEAR PUBLISHED") + "\n";
+
+        for(Book book: availableBooks) {
+            expectedOutputString = expectedOutputString.concat(String.format(format, book.name, book.author, book.yearPublished));
+        }
+
+        assertEquals(expectedOutputString, actualOutputString);
+    }
+
+    @Test
+    public void testMaxNameLengthFunction() {
+        ArrayList<Book> availableBooks = new ArrayList<>();
+        availableBooks.add(gotBook);
+        availableBooks.add(harryPotterBook);
+        BookCatalogue bookCatalogue = new BookCatalogue(availableBooks, null);
+
+        int actualMaxLength = bookCatalogue.getMaxNameLengthForPrintFormatting();
+        int expectedMaxLength = availableBooks.get(1).name.length() + 10;
+        assertEquals(expectedMaxLength, actualMaxLength);
+    }
 }
