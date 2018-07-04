@@ -137,7 +137,7 @@ public class bookTests {
 
         String actualOutputString = bookCatalogue.generateFormattedStringAllAvailableBooks();
         String format = "%-" + bookCatalogue.getMaxNameLengthForPrintFormatting() + "s %-30s %-20s\n";
-        String expectedOutputString = String.format(format, "BOOK NAME", "AUTHOR", "YEAR PUBLISHED") + "\n";
+        String expectedOutputString = "Available Books\n----------------\n" + String.format(format, "BOOK NAME", "AUTHOR", "YEAR PUBLISHED") + "\n";
 
         for(Book book: availableBooks) {
             expectedOutputString = expectedOutputString.concat(String.format(format, book.name, book.author, book.yearPublished));

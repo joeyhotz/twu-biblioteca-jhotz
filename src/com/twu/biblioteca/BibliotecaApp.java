@@ -17,7 +17,7 @@ public class BibliotecaApp {
             printToConsole(generateMenuStringToDisplay());
             printToConsole("Enter a number here to select an option: ");
             res = handleInputAndReturnResponse(returnUserInput());
-            printToConsole("\n" + res + "\n");
+            printToConsole("\n" + res + "\n\n");
         }
     }
 

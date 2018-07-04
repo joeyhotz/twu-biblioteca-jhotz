@@ -38,14 +38,13 @@ public class BookCatalogue {
 
     public String generateFormattedStringAllAvailableBooks() {
         String format = "%-" + getMaxNameLengthForPrintFormatting() + "s %-30s %-20s\n";
-        String output = String.format(format, "BOOK NAME", "AUTHOR", "YEAR PUBLISHED") + "\n";
+        String output = "Available Books\n----------------\n" + String.format(format, "BOOK NAME", "AUTHOR", "YEAR PUBLISHED") + "\n";
 
         for (Book book: returnAllAvailableBooks()) {
             output = output.concat(String.format(format, book.name, book.author, book.yearPublished));
         }
         return output;
     }
-
 
     public String handleCheckOutBook(String bookTitle) {
         Book book = findBookByBookTitle(bookTitle);
