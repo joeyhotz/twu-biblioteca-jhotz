@@ -20,7 +20,6 @@ public class Menu {
             System.out.print("Enter a number here to select an option: ");
             input = String.format(sc.nextLine());
             handleInput(input);
-
         }
     }
 

@@ -35,4 +35,15 @@ public class BookCatalogue {
             return true;
         }
     }
+
+    public boolean checkInBook(Book book) {
+        try {
+            this.checkedOutBooks.remove(book);
+            this.availableBooks.add(book);
+        } catch (Exception ex) {
+            return false;
+        } finally {
+            return true;
+        }
+    }
 }

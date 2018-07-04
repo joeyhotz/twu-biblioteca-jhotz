@@ -79,4 +79,34 @@ public class bookTests {
         assertEquals(expectedAllAvailableBooks, actualAllAvailableBooks);
         assertEquals(expectedCheckedOutBooks, actualCheckedOutBooks);
     }
+
+    @Test
+    public void testCanCheckinBookAndCatalogueReflectsThis() {
+        Book gotBook = new Book("A Game of Thrones", "George R. R. Martin", "01.08.1996");
+        Book hitchhickersBook = new Book("The Hitchhiker's Guide to the Galaxy ", "Douglas Adam", "12.10.1979");
+        Book harryPotterBook = new Book("Harry Potter: The Philosophers Stone", "J.K. Rowling", "26.06.1997");
+
+        ArrayList<Book> availableBooks = new ArrayList<>();
+        availableBooks.add(hitchhickersBook);
+        availableBooks.add(harryPotterBook);
+
+        ArrayList<Book> checkedOutBooks = new ArrayList<>();
+        checkedOutBooks.add(gotBook);
+
+        BookCatalogue bookCatalogue = new BookCatalogue(availableBooks, checkedOutBooks);
+        bookCatalogue.checkInBook(gotBook);
+
+        ArrayList<Book> actualAllAvailableBooks = bookCatalogue.returnAllAvailableBooks();
+        ArrayList<Book> expectedAllAvailableBooks = new ArrayList<Book>();
+        expectedAllAvailableBooks.add(hitchhickersBook);
+        expectedAllAvailableBooks.add(harryPotterBook);
+        expectedAllAvailableBooks.add(gotBook);
+
+        ArrayList<Book> actualCheckedOutBooks = bookCatalogue.returnAllCheckedOutBooks();
+        ArrayList<Book> expectedCheckedOutBooks = new ArrayList<Book>();
+
+        assertEquals(expectedAllAvailableBooks, actualAllAvailableBooks);
+        assertEquals(expectedCheckedOutBooks, actualCheckedOutBooks);
+    }
+
 }
