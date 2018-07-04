@@ -2,7 +2,10 @@ package com.twu.biblioteca;
 
 import org.junit.Test;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import static org.junit.Assert.*;
 
@@ -215,4 +218,25 @@ public class bookTests {
         assertTrue(!bookCatalogue.bookIsCheckedOut(harryPotterBook));
     }
 
+    @Test
+    public void testMenuGoodbye() {
+        assertEquals("Goodbye!", BibliotecaApp.handleInputAndReturnResponse("4"));
+    }
+
+    @Test
+    public void testMenuInvalidInput() {
+        assertEquals("Select a valid option! Try again:", BibliotecaApp.handleInputAndReturnResponse("invalidoption"));
+    }
+
+    @Test
+    public void testMenuListBooks() {
+        ArrayList<Book> availableBooks = new ArrayList<>();
+        availableBooks.add(gotBook);
+        availableBooks.add(hitchhickersBook);
+        ArrayList<Book> checkedOutBooks = new ArrayList<>();
+        checkedOutBooks.add(harryPotterBook);
+        BookCatalogue bookCatalogue = new BookCatalogue(availableBooks, checkedOutBooks);
+
+        assertEquals(bookCatalogue.generateFormattedStringAllAvailableBooks(), BibliotecaApp.handleInputAndReturnResponse("1"));
+    }
 }

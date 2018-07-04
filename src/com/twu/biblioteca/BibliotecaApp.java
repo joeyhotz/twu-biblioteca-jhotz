@@ -21,7 +21,7 @@ public class BibliotecaApp {
         }
     }
 
-    private static String handleInputAndReturnResponse(String input) {
+    public static String handleInputAndReturnResponse(String input) {
         switch (input) {
             case "1": return handleListBooks();
             case "2": return handleBookCheckOut();
