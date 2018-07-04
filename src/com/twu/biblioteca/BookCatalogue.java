@@ -66,7 +66,6 @@ public class BookCatalogue {
         } else {
             return("That is not a valid book to return.");
         }
-
     }
 
     public int getMaxNameLengthForPrintFormatting() {

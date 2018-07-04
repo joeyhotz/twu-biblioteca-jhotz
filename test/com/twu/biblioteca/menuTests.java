@@ -56,4 +56,19 @@ public class menuTests {
         String actualOutput = BibliotecaApp.generateMenuStringToDisplay();
         assertEquals(expectedOutput, actualOutput);
     }
+
+    @Test
+    public void testMenuOptionGetInt() {
+        MenuOption menuOption = new MenuOption(1, "List Books");
+        int actualOutput = menuOption.getInt();
+        assertEquals(1, actualOutput);
+    }
+
+    @Test
+    public void testMenuOptionGetString() {
+        MenuOption menuOption = new MenuOption(1, "List Books");
+        String actualOutput = menuOption.getString();
+        assertEquals("List Books", actualOutput);
+    }
+
 }

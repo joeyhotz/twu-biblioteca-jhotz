@@ -55,7 +55,7 @@ public class bookTests {
         ArrayList<Book> checkedOutBooks = new ArrayList<>();
 
         BookCatalogue bookCatalogue = new BookCatalogue(availableBooks, checkedOutBooks);
-        bookCatalogue.checkOutBook(gotBook.name);
+        var outputString = bookCatalogue.checkOutBook(gotBook.name);
 
         ArrayList<Book> actualAllAvailableBooks = bookCatalogue.returnAllAvailableBooks();
         ArrayList<Book> expectedAllAvailableBooks = new ArrayList<Book>();
@@ -68,6 +68,21 @@ public class bookTests {
 
         assertEquals(expectedAllAvailableBooks, actualAllAvailableBooks);
         assertEquals(expectedCheckedOutBooks, actualCheckedOutBooks);
+        assertEquals("Thank you! Enjoy the book.", outputString);
+    }
+
+    @Test
+    public void testCantCheckoutInvalidBook() {
+        ArrayList<Book> availableBooks = new ArrayList<>();
+        availableBooks.add(gotBook);
+        availableBooks.add(hitchhickersBook);
+        availableBooks.add(harryPotterBook);
+
+        ArrayList<Book> checkedOutBooks = new ArrayList<>();
+
+        BookCatalogue bookCatalogue = new BookCatalogue(availableBooks, checkedOutBooks);
+        var outputString = bookCatalogue.checkOutBook(gotBook.name + "makesitinvalid");
+        assertEquals("That book is not available.", outputString);
     }
 
     @Test
@@ -80,7 +95,7 @@ public class bookTests {
         checkedOutBooks.add(gotBook);
 
         BookCatalogue bookCatalogue = new BookCatalogue(availableBooks, checkedOutBooks);
-        bookCatalogue.checkInBook(gotBook.name);
+        var outputString = bookCatalogue.checkInBook(gotBook.name);
 
         ArrayList<Book> actualAllAvailableBooks = bookCatalogue.returnAllAvailableBooks();
         ArrayList<Book> expectedAllAvailableBooks = new ArrayList<Book>();
@@ -93,7 +108,21 @@ public class bookTests {
 
         assertEquals(expectedAllAvailableBooks, actualAllAvailableBooks);
         assertEquals(expectedCheckedOutBooks, actualCheckedOutBooks);
+        assertEquals("Thank you for returning the book.", outputString);
+    }
 
+    @Test
+    public void testCantCheckInvalidBook() {
+        ArrayList<Book> availableBooks = new ArrayList<>();
+        availableBooks.add(hitchhickersBook);
+        availableBooks.add(harryPotterBook);
+
+        ArrayList<Book> checkedOutBooks = new ArrayList<>();
+        checkedOutBooks.add(gotBook);
+
+        BookCatalogue bookCatalogue = new BookCatalogue(availableBooks, checkedOutBooks);
+        var outputString = bookCatalogue.checkInBook(gotBook.name + "makesitinvalid");
+        assertEquals("That is not a valid book to return.", outputString);
     }
 
     @Test
@@ -136,4 +165,54 @@ public class bookTests {
         Book bookFound = bookCatalogue.findBookByBookTitle("Harry Potter and The Philosophers Stone");
         assertEquals(harryPotterBook, bookFound);
     }
+
+    @Test
+    public void testBookIsAvailable() {
+        ArrayList<Book> availableBooks = new ArrayList<>();
+        availableBooks.add(hitchhickersBook);
+        availableBooks.add(harryPotterBook);
+        ArrayList<Book> checkedOutBooks = new ArrayList<>();
+        checkedOutBooks.add(gotBook);
+        BookCatalogue bookCatalogue = new BookCatalogue(availableBooks, checkedOutBooks);
+
+        assertTrue(bookCatalogue.bookIsAvailable(hitchhickersBook));
+    }
+
+    @Test
+    public void testBookIsAvailableReturnsNullIfItsNot() {
+        ArrayList<Book> availableBooks = new ArrayList<>();
+        availableBooks.add(hitchhickersBook);
+        availableBooks.add(harryPotterBook);
+        ArrayList<Book> checkedOutBooks = new ArrayList<>();
+        checkedOutBooks.add(gotBook);
+        BookCatalogue bookCatalogue = new BookCatalogue(availableBooks, checkedOutBooks);
+
+        assertTrue(!bookCatalogue.bookIsAvailable(gotBook));
+    }
+
+
+    @Test
+    public void testBookIsCheckedOut() {
+        ArrayList<Book> availableBooks = new ArrayList<>();
+        availableBooks.add(hitchhickersBook);
+        availableBooks.add(harryPotterBook);
+        ArrayList<Book> checkedOutBooks = new ArrayList<>();
+        checkedOutBooks.add(gotBook);
+        BookCatalogue bookCatalogue = new BookCatalogue(availableBooks, checkedOutBooks);
+
+        assertTrue(bookCatalogue.bookIsCheckedOut(gotBook));
+    }
+
+    @Test
+    public void testBookIsCheckedOutReturnsNullIfItsAvailable() {
+        ArrayList<Book> availableBooks = new ArrayList<>();
+        availableBooks.add(hitchhickersBook);
+        availableBooks.add(harryPotterBook);
+        ArrayList<Book> checkedOutBooks = new ArrayList<>();
+        checkedOutBooks.add(gotBook);
+        BookCatalogue bookCatalogue = new BookCatalogue(availableBooks, checkedOutBooks);
+
+        assertTrue(!bookCatalogue.bookIsCheckedOut(harryPotterBook));
+    }
+
 }
