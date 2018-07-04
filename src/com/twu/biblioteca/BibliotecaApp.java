@@ -30,28 +30,25 @@ public class BibliotecaApp {
     }
 
     private static String handleInput(String input) {
-        String output = null;
+        String res = null;
         switch (input) {
-            case "1": output = bookCatalogue.generateFormattedStringAllAvailableBooks();
+            case "1": res = bookCatalogue.generateFormattedStringAllAvailableBooks();
                 break;
-            case "2": String bookTitleUserInputCheckOut = returnUserInput("Enter your book title here: ");
-                output = bookCatalogue.checkOutBook(bookTitleUserInputCheckOut);
+            case "2": res = bookCatalogue.checkOutBook(returnUserInput("Enter your book title here: "));
                 break;
-            case "3": String bookTitleUserInputCheckIn = returnUserInput("Enter your book title here: ");
-                output = bookCatalogue.checkInBook(bookTitleUserInputCheckIn);
+            case "3": res = bookCatalogue.checkInBook(returnUserInput("Enter your book title here: "));
                 break;
-            case "4": output = "Goodbye!";
+            case "4": res = "Goodbye!";
                 break;
-            default: output = "Select a valid option! Try again:";
+            default: res = "Select a valid option! Try again:";
                 break;
         }
-        return output;
+        return res;
     }
 
     public static String returnUserInput(String prompt) {
         printToConsole(prompt);
-        String userInput = String.format(sc.nextLine());
-        return userInput;
+        return String.format(sc.nextLine());
     }
 
     public static String generateMenuStringToDisplay() {
