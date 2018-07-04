@@ -13,11 +13,12 @@ public class BibliotecaApp {
 
     public static void displayMenu() {
         printToConsole(returnWelcomeMessage());
-        String input = "";
-        while (!input.equals("4")) {
-            BibliotecaApp.printToConsole(generateMenuStringToDisplay());
-            String res = handleInput(returnUserInput("Enter a number here to select an option: "));
-            BibliotecaApp.printToConsole("\n" + res + "\n");
+        String res = "";
+        while (res != "Goodbye!") {
+            printToConsole(generateMenuStringToDisplay());
+            printToConsole("Enter a number here to select an option: ");
+            res = handleInput(returnUserInput());
+            printToConsole("\n" + res + "\n");
         }
     }
 
@@ -26,9 +27,13 @@ public class BibliotecaApp {
         switch (input) {
             case "1": res = bookCatalogue.generateFormattedStringAllAvailableBooks();
                 break;
-            case "2": res = bookCatalogue.checkOutBook(returnUserInput("Enter your book title here: "));
+            case "2":
+                printToConsole("Enter your book title here: ");
+                res = bookCatalogue.checkOutBook(returnUserInput());
                 break;
-            case "3": res = bookCatalogue.checkInBook(returnUserInput("Enter your book title here: "));
+            case "3":
+                printToConsole("Enter your book title here: ");
+                res = bookCatalogue.checkInBook(returnUserInput());
                 break;
             case "4": res = "Goodbye!";
                 break;
@@ -38,8 +43,7 @@ public class BibliotecaApp {
         return res;
     }
 
-    public static String returnUserInput(String prompt) {
-        printToConsole(prompt);
+    public static String returnUserInput() {
         return String.format(sc.nextLine());
     }
 

@@ -1,8 +1,12 @@
 package com.twu.biblioteca;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.Scanner;
+
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -70,5 +74,4 @@ public class menuTests {
         String actualOutput = menuOption.getString();
         assertEquals("List Books", actualOutput);
     }
-
 }
