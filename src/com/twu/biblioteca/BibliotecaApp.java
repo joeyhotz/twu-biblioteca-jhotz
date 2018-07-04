@@ -6,12 +6,6 @@ import java.util.Scanner;
 public class BibliotecaApp {
     public static BookCatalogue bookCatalogue = new BookCatalogue();
     private static Scanner sc = new Scanner(System.in);
-    final public static ArrayList<MenuOption> menuOptions = new ArrayList<MenuOption>() {{
-        add(new MenuOption(1, "List Books"));
-        add(new MenuOption(2, "Checkout Book"));
-        add(new MenuOption(3, "Return Book"));
-        add(new MenuOption(4, "Quit"));
-    }};
 
     public static void main(String[] args) {
         displayMenu();
@@ -20,12 +14,10 @@ public class BibliotecaApp {
     public static void displayMenu() {
         printToConsole(returnWelcomeMessage());
         String input = "";
-        String output = "";
         while (!input.equals("4")) {
             BibliotecaApp.printToConsole(generateMenuStringToDisplay());
-            input = returnUserInput("Enter a number here to select an option: ");
-            output = handleInput(input);
-            BibliotecaApp.printToConsole("\n" + output + "\n");
+            String res = handleInput(returnUserInput("Enter a number here to select an option: "));
+            BibliotecaApp.printToConsole("\n" + res + "\n");
         }
     }
 
@@ -53,7 +45,7 @@ public class BibliotecaApp {
 
     public static String generateMenuStringToDisplay() {
         String output = "";
-        for (MenuOption menuOption : menuOptions) {
+        for (MenuOption menuOption : MenuOptions.data) {
             output += menuOption.getInt() + ": " + menuOption.getString() + "\n";
         }
         return output;

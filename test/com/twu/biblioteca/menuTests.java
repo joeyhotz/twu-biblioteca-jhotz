@@ -29,8 +29,8 @@ public class menuTests {
 
     @Test
     public void testMenuStartsFrom1AndAscends() {
-        for (int i=1; i<=BibliotecaApp.menuOptions.size();i++) {
-            if (BibliotecaApp.menuOptions.get(i - 1).getInt() != i) {
+        for (int i=1; i<=MenuOptions.data.size();i++) {
+            if (MenuOptions.data.get(i - 1).getInt() != i) {
                 fail("Menu Options aren't in a range starting from 1");
             }
         }
@@ -38,7 +38,7 @@ public class menuTests {
 
     @Test
     public void testMenuOptionsContainListCheckoutReturn() {
-        for (MenuOption menuOption: BibliotecaApp.menuOptions) {
+        for (MenuOption menuOption: MenuOptions.data) {
             if (menuOption.getString() == "List Books" || menuOption.getString() == "Checkout Book" || menuOption.getString() == "Return Book" || menuOption.getString() == "Quit") {
                 //do nothing, this is good
             } else {
