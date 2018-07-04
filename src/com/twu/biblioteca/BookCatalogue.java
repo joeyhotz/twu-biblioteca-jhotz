@@ -22,8 +22,9 @@ public class BookCatalogue {
     }
 
     public ArrayList<Book> returnAllBooks() {
-        ArrayList<Book> allBooks = availableBooks;
-        allBooks.addAll(checkedOutBooks);
+        ArrayList<Book> allBooks = new ArrayList<>();
+        if (availableBooks != null) allBooks.addAll(availableBooks);
+        if (checkedOutBooks != null) allBooks.addAll(checkedOutBooks);
         return allBooks;
     }
 
@@ -45,26 +46,27 @@ public class BookCatalogue {
         return checkedOutBooks;
     }
 
-    public void checkOutBook(Book book) {
-        try {
+    public String checkOutBook(String bookTitle) {
+        Book book = findBookByBookTitle(bookTitle);
+        if (bookIsAvailable(book)) {
             this.availableBooks.remove(book);
             this.checkedOutBooks.add(book);
-        } catch (Exception ex) {
-            System.out.println("That book is not available.");
-        } finally {
-            System.out.println("Thank you! Enjoy the book.");
+            return("Thank you! Enjoy the book.");
+        } else {
+            return("That book is not available.");
         }
     }
 
-    public void checkInBook(Book book) {
-        try {
+    public String checkInBook(String bookTitle) {
+        Book book = findBookByBookTitle(bookTitle);
+        if (bookIsCheckedOut(book)) {
             this.checkedOutBooks.remove(book);
             this.availableBooks.add(book);
-        } catch (Exception ex) {
-            System.out.println("That is not a valid book to return");
-        } finally {
-            System.out.println("Thank you for returning the book.");
+            return("Thank you for returning the book.");
+        } else {
+            return("That is not a valid book to return.");
         }
+
     }
 
     public int getMaxNameLengthForPrintFormatting() {
@@ -74,4 +76,33 @@ public class BookCatalogue {
         }
         return max + 10;
     }
+
+    public Book findBookByBookTitle(String bookTitle) {
+        for (Book book: returnAllBooks()) {
+            if (book.name.equals(bookTitle)) {
+                return book;
+            }
+        }
+        return null;
+    }
+
+    public boolean bookIsAvailable(Book bookToCheck) {
+        if (bookToCheck == null) return false;
+        for (Book book: returnAllAvailableBooks()) {
+            if (book.name.equals(bookToCheck.name)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean bookIsCheckedOut(Book bookToCheck) {
+        for (Book book: returnAllCheckedOutBooks()) {
+            if (book.name.equals(bookToCheck.name)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

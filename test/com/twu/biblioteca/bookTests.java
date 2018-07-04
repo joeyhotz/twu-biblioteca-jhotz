@@ -55,7 +55,7 @@ public class bookTests {
         ArrayList<Book> checkedOutBooks = new ArrayList<>();
 
         BookCatalogue bookCatalogue = new BookCatalogue(availableBooks, checkedOutBooks);
-        bookCatalogue.checkOutBook(gotBook);
+        bookCatalogue.checkOutBook(gotBook.name);
 
         ArrayList<Book> actualAllAvailableBooks = bookCatalogue.returnAllAvailableBooks();
         ArrayList<Book> expectedAllAvailableBooks = new ArrayList<Book>();
@@ -80,7 +80,7 @@ public class bookTests {
         checkedOutBooks.add(gotBook);
 
         BookCatalogue bookCatalogue = new BookCatalogue(availableBooks, checkedOutBooks);
-        bookCatalogue.checkInBook(gotBook);
+        bookCatalogue.checkInBook(gotBook.name);
 
         ArrayList<Book> actualAllAvailableBooks = bookCatalogue.returnAllAvailableBooks();
         ArrayList<Book> expectedAllAvailableBooks = new ArrayList<Book>();
@@ -124,5 +124,16 @@ public class bookTests {
         int actualMaxLength = bookCatalogue.getMaxNameLengthForPrintFormatting();
         int expectedMaxLength = availableBooks.get(1).name.length() + 10;
         assertEquals(expectedMaxLength, actualMaxLength);
+    }
+
+    @Test
+    public void testFindBookByBookTitle() {
+        ArrayList<Book> availableBooks = new ArrayList<>();
+        availableBooks.add(hitchhickersBook);
+        availableBooks.add(harryPotterBook);
+        BookCatalogue bookCatalogue = new BookCatalogue(availableBooks, null);
+
+        Book bookFound = bookCatalogue.findBookByBookTitle("Harry Potter and The Philosophers Stone");
+        assertEquals(harryPotterBook, bookFound);
     }
 }

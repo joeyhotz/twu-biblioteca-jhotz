@@ -6,7 +6,6 @@ import java.util.Scanner;
 public class BibliotecaApp {
     public static BookCatalogue bookCatalogue = new BookCatalogue();
     private static Scanner sc = new Scanner(System.in);
-
     final public static ArrayList<MenuOption> menuOptions = new ArrayList<MenuOption>() {{
         add(new MenuOption(1, "List Books"));
         add(new MenuOption(2, "Checkout Book"));
@@ -15,17 +14,16 @@ public class BibliotecaApp {
     }};
 
     public static void main(String[] args) {
-        printToConsole(returnWelcomeMessage());
         displayMenu();
     }
 
     public static void displayMenu() {
+        printToConsole(returnWelcomeMessage());
         String input = "";
         String output = "";
         while (!input.equals("4")) {
             BibliotecaApp.printToConsole(generateMenuStringToDisplay());
-            BibliotecaApp.printToConsole("Enter a number here to select an option: ");
-            input = String.format(sc.nextLine());
+            input = returnUserInput("Enter a number here to select an option: ");
             output = handleInput(input);
             BibliotecaApp.printToConsole("\n" + output + "\n");
         }
@@ -36,7 +34,8 @@ public class BibliotecaApp {
         switch (input) {
             case "1": output = bookCatalogue.generateFormattedStringAllAvailableBooks();
                 break;
-            case "2":
+            case "2": String bookTitleUserInput = returnUserInput("Enter your book title here: ");
+                output = bookCatalogue.checkOutBook(bookTitleUserInput);
                 break;
             case "3":
                 break;
@@ -48,6 +47,11 @@ public class BibliotecaApp {
         return output;
     }
 
+    public static String returnUserInput(String prompt) {
+        printToConsole(prompt);
+        String userInput = String.format(sc.nextLine());
+        return userInput;
+    }
 
     public static String generateMenuStringToDisplay() {
         String output = "";
