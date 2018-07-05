@@ -5,30 +5,29 @@ import java.util.Scanner;
 public class BibliotecaApp {
     public static BookCatalogue bookCatalogue = new BookCatalogue();
     private static Scanner sc = new Scanner(System.in);
-    public static UserAccount loggedInAccount = null;
+    public static UserAccount loggedInAccount;
 
     public static void main(String[] args) {
+        loggedInAccount = null;
         displayMenu();
     }
 
     public static void displayLogin() {
-        printToConsole("\n\nPlease login with your credentials:\n\n");
-        printToConsole("Library Number: ");
-        String enteredLibraryNumber = returnUserInput();
-        printToConsole("Password: ");
-        String enteredPassword = returnUserInput();
-        clearScreen();
-        String output = handleLogin(enteredLibraryNumber, enteredPassword) ? "\nSuccessful login\n\n-----------------\n" : "\nUnsuccessful login." ;
-        printToConsole(output);
+        if (loggedInAccount == null) {
+            printToConsole("\n\nPlease login with your credentials:\n\n");
+            printToConsole("Library Number: ");
+            String enteredLibraryNumber = returnUserInput();
+            printToConsole("Password: ");
+            String enteredPassword = returnUserInput();
+            clearScreen();
+            String output = handleLogin(enteredLibraryNumber, enteredPassword) ? "\nSuccessful login\n\n-----------------\n" : "\nUnsuccessful login.";
+            printToConsole(output);
+        }
     }
 
     public static boolean handleLogin(String enteredLibraryNumber, String enteredPassword) {
         loggedInAccount = UserAccount.loginValid(enteredLibraryNumber, enteredPassword);
-        if (loggedInAccount != null) {
-            return true;
-        } else {
-            return false;
-        }
+        return (loggedInAccount != null);
     }
 
     public static void displayMenu() {
@@ -58,7 +57,7 @@ public class BibliotecaApp {
     }
 
     private static String handleLoginOrViewAccount() {
-        if (loggedInAccount == null) return "Please try again.";
+        if (!loggedIn()) return "Please try again.";
         return loggedInAccount.buildCustomerInformationString();
     }
 
@@ -67,13 +66,13 @@ public class BibliotecaApp {
     }
 
     private static String handleBookCheckIn() {
-        if (loggedInAccount == null) return "You must be logged in to continue";
+        if (!loggedIn()) return "You must be logged in to continue";
         printToConsole("Enter your book title here: ");
         return bookCatalogue.handleCheckInBook(returnUserInput());
     }
 
     private static String handleBookCheckOut() {
-        if (loggedIn()) return "You must be logged in to continue";
+        if (!loggedIn()) return "You must be logged in to continue";
         printToConsole("Enter your book title here: ");
         return bookCatalogue.handleCheckOutBook(returnUserInput());
     }
