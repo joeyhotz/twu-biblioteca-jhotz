@@ -7,7 +7,14 @@ public class BibliotecaApp {
     private static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
+        displayLogin();
         displayMenu();
+    }
+
+    public static void displayLogin() {
+        printToConsole("Hello! Welcome to Biblioteca.\n\nPlease login with your credentials.\n\n");
+        printToConsole("Library Number: ");
+        printToConsole("Password: ");
     }
 
     public static void displayMenu() {
