@@ -1,10 +1,12 @@
 package com.twu.biblioteca;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class BibliotecaApp {
     public static BookCatalogue bookCatalogue = new BookCatalogue();
     private static Scanner sc = new Scanner(System.in);
+    public static UserAccount loggedInAccount = null;
 
     public static void main(String[] args) {
         displayLogin();
@@ -13,8 +15,24 @@ public class BibliotecaApp {
 
     public static void displayLogin() {
         printToConsole("Hello! Welcome to Biblioteca.\n\nPlease login with your credentials.\n\n");
-        printToConsole("Library Number: ");
-        printToConsole("Password: ");
+        while(loggedInAccount == null) {
+            printToConsole("Library Number: ");
+            String enteredLibraryNumber = returnUserInput();
+            printToConsole("Password: ");
+            String enteredPassword = returnUserInput();
+            clearScreen();
+            String output = handleLogin(enteredLibraryNumber, enteredPassword) ? "\nSuccessful login\n\n-----------------\n" : "\nUnsuccessful login. Try again.\n\n" ;
+            printToConsole(output);
+        }
+    }
+
+    public static boolean handleLogin(String enteredLibraryNumber, String enteredPassword) {
+        loggedInAccount = UserAccount.loginValid(enteredLibraryNumber, enteredPassword);
+        if (loggedInAccount != null) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public static void displayMenu() {
@@ -66,5 +84,10 @@ public class BibliotecaApp {
 
     public static void printToConsole(String out) {
         System.out.print(out);
+    }
+
+    public static void clearScreen() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
     }
 }

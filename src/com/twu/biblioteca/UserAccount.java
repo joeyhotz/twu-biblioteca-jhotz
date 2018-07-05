@@ -6,11 +6,11 @@ public class UserAccount {
 
     public UserAccount(String libraryNumber, String password) {
         this.libraryNumber = libraryNumber;
-        this.password = MD5PasswordHashing.hashPassword(password);
+        this.password = PasswordHashing.hashPassword(password);
     }
 
     public static UserAccount loginValid(String libraryNumber, String password) {
-        if (libraryNumber.equals("123") && password.equals(MD5PasswordHashing.hashPassword("test"))) {
+        if (libraryNumber.equals("123") && PasswordHashing.hashPassword(password).equals(PasswordHashing.hashPassword("test"))) {
             return new UserAccount("123", "test");
         }
         return null;
