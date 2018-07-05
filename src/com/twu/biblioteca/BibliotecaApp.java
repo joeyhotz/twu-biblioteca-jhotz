@@ -1,6 +1,5 @@
 package com.twu.biblioteca;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 public class BibliotecaApp {
@@ -9,13 +8,12 @@ public class BibliotecaApp {
     public static UserAccount loggedInAccount = null;
 
     public static void main(String[] args) {
-        displayLogin();
         displayMenu();
     }
 
     public static void displayLogin() {
-        printToConsole("Hello! Welcome to Biblioteca.\n\nPlease login with your credentials.\n\n");
         while(loggedInAccount == null) {
+            printToConsole("\n\nPlease login with your credentials:\n\n");
             printToConsole("Library Number: ");
             String enteredLibraryNumber = returnUserInput();
             printToConsole("Password: ");
@@ -52,8 +50,13 @@ public class BibliotecaApp {
             case "2": return handleBookCheckOut();
             case "3": return handleBookCheckIn();
             case "4": return "Goodbye!";
+            case "5": return handleViewAccount();
             default:  return "Select a valid option! Try again:";
         }
+    }
+
+    private static String handleViewAccount() {
+        return loggedInAccount.buildCustomerInformationString();
     }
 
     private static String handleListBooks() {
@@ -61,11 +64,13 @@ public class BibliotecaApp {
     }
 
     private static String handleBookCheckIn() {
+        displayLogin();
         printToConsole("Enter your book title here: ");
         return bookCatalogue.handleCheckInBook(returnUserInput());
     }
 
     private static String handleBookCheckOut() {
+        displayLogin();
         printToConsole("Enter your book title here: ");
         return bookCatalogue.handleCheckOutBook(returnUserInput());
     }
@@ -75,10 +80,11 @@ public class BibliotecaApp {
     }
 
     public static String generateMenuStringToDisplay() {
-        String output = "";
-        for (MenuOption menuOption : MenuOptions.data) {
-            output += menuOption.getInt() + ": " + menuOption.getString() + "\n";
-        }
+        String output = "1: List Books\n" +
+                "2: Checkout Book\n" +
+                "3: Return Book\n" +
+                "4: Quit\n";
+        if (loggedInAccount != null) output += "5: My Account";
         return output;
     }
 

@@ -24,4 +24,11 @@ public class UserAccountTests {
     public void testHandleInvalidLogin() {
         assertTrue(!BibliotecaApp.handleLogin("invalid", "invalid"));
     }
+
+    @Test
+    public void testBuildingCustomerInformationString() {
+        UserAccount user = new UserAccount("123", "test", "George", "george@test.com", "0423523999");
+        String expectedOutput = String.format("YOUR ACCOUNT DETAILS\n-------------\nName: %s\nEmail: %s\nPhone: %s", user.name, user.emailAddress, user.phoneNumber);
+        assertEquals(expectedOutput, user.buildCustomerInformationString());
+    }
 }

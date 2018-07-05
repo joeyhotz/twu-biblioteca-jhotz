@@ -10,7 +10,7 @@ import java.util.Scanner;
 import static org.junit.Assert.*;
 
 
-public class bookTests {
+public class BookTests {
     Book gotBook = new Book("A Game of Thrones", "George R. R. Martin", "01.08.1996");
     Book hitchhickersBook = new Book("The Hitchhiker's Guide to the Galaxy", "Douglas Adam", "12.10.1979");
     Book harryPotterBook = new Book("Harry Potter and The Philosophers Stone", "J.K. Rowling", "26.06.1997");
