@@ -36,12 +36,12 @@ public class BibliotecaApp {
         while (res != "Goodbye!") {
             printToConsole(generateMenuStringToDisplay());
             printToConsole("Enter a number here to select an option: ");
-            res = handleInputAndReturnResponse(returnUserInput());
+            res = handleMenuInputAndReturnResponse(returnUserInput());
             printToConsole("\n" + res + "\n\n");
         }
     }
 
-    public static String handleInputAndReturnResponse(String input) {
+    public static String handleMenuInputAndReturnResponse(String input) {
         switch (input) {
             case "1": return handleListBooks();
             case "2": displayLogin();

@@ -6,6 +6,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 public class MenuTests {
@@ -54,4 +55,19 @@ public class MenuTests {
         String actualOutput = instance.generateMenuStringToDisplay();
         assertEquals(expectedOutput, actualOutput);
     }
+
+    @Test
+    public void testLoggedIn() {
+        BibliotecaApp instance = new BibliotecaApp();
+        instance.loggedInAccount = new UserAccount("123", "test", "George", "george@george.com", "03123");
+        assertTrue(instance.loggedIn());
+    }
+
+    @Test
+    public void testNotLoggedIn() {
+        BibliotecaApp instance = new BibliotecaApp();
+        instance.loggedInAccount = null;
+        assertTrue(!instance.loggedIn());
+    }
+
 }
