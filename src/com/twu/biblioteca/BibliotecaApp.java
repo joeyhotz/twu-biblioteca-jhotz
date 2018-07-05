@@ -5,10 +5,9 @@ import java.util.Scanner;
 public class BibliotecaApp {
     public static BookCatalogue bookCatalogue = new BookCatalogue();
     private static Scanner sc = new Scanner(System.in);
-    public static UserAccount loggedInAccount;
+    public static UserAccount loggedInAccount = null;
 
     public static void main(String[] args) {
-        loggedInAccount = null;
         displayMenu();
     }
 

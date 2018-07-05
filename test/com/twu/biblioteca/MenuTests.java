@@ -69,5 +69,4 @@ public class MenuTests {
         instance.loggedInAccount = null;
         assertTrue(!instance.loggedIn());
     }
-
 }
