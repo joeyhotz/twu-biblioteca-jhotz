@@ -10,29 +10,45 @@ import static org.junit.Assert.*;
 public class MovieTests {
     @Test
     public void testReturnsAllMovies() {
-        MovieCatalogue movieCatalogue = fillMovieCatalogue();
+        Movie itMovie = new Movie("I.T.", "Andrés Muschietti", "2017", 8, true);
+        Movie thisIsTheEndMovie = new Movie("This is the end", "Seth Rogen/Steven Goldberg", "2013", 6, false);
+
+        ArrayList<Movie> movies = new ArrayList<>();
+        movies.add(itMovie);
+        movies.add(thisIsTheEndMovie);
+        MovieCatalogue movieCatalogue = new MovieCatalogue(movies);
 
         ArrayList<Movie> actualAllMovies = movieCatalogue.returnAllMovies();
-        ArrayList<Movie> expectedAllMovies = returnListOfMovies();
-        assertEquals(expectedAllMovies.size(), actualAllMovies.size());
+        ArrayList<Movie> expectedAllMovies = movies;
+        assertEquals(expectedAllMovies, actualAllMovies);
     }
 
     @Test
     public void testReturnsAllAvailableMovies() {
-        MovieCatalogue movieCatalogue = fillMovieCatalogue();
+        Movie itMovie = new Movie("I.T.", "Andrés Muschietti", "2017", 8, true);
         Movie thisIsTheEndMovie = new Movie("This is the end", "Seth Rogen/Steven Goldberg", "2013", 6, false);
+
+        ArrayList<Movie> movies = new ArrayList<>();
+        movies.add(itMovie);
+        movies.add(thisIsTheEndMovie);
+        MovieCatalogue movieCatalogue = new MovieCatalogue(movies);
 
         ArrayList<Movie> actualAllAvailableMovies = movieCatalogue.returnAllAvailableMovies();
         ArrayList<Movie> expectedAllAvailableMovies = new ArrayList<>();
         expectedAllAvailableMovies.add(thisIsTheEndMovie);
 
-        assertTrue(checkIfTwoListOfMoviesAreEqual(expectedAllAvailableMovies, actualAllAvailableMovies));
+        assertEquals(expectedAllAvailableMovies, actualAllAvailableMovies);
     }
 
     @Test
     public void testCanCheckoutMovieAndCatalogueReflectsThis() {
-        MovieCatalogue movieCatalogue = fillMovieCatalogue();
+        Movie itMovie = new Movie("I.T.", "Andrés Muschietti", "2017", 8, true);
         Movie thisIsTheEndMovie = new Movie("This is the end", "Seth Rogen/Steven Goldberg", "2013", 6, false);
+
+        ArrayList<Movie> movies = new ArrayList<>();
+        movies.add(itMovie);
+        movies.add(thisIsTheEndMovie);
+        MovieCatalogue movieCatalogue = new MovieCatalogue(movies);
 
         var outputString = movieCatalogue.handleCheckOut(thisIsTheEndMovie.name);
 
@@ -40,17 +56,22 @@ public class MovieTests {
         ArrayList<Movie> expectedAllAvailableMovies = new ArrayList<Movie>();
 
         ArrayList<Movie> actualCheckedOutMovies = movieCatalogue.returnAllCheckedOutMovies();
-        ArrayList<Movie> expectedCheckedOutMovies = returnListOfMovies();
+        ArrayList<Movie> expectedCheckedOutMovies = movies;
 
-        assertTrue(checkIfTwoListOfMoviesAreEqual(expectedAllAvailableMovies, actualAllAvailableMovies));
-        assertTrue(checkIfTwoListOfMoviesAreEqual(expectedCheckedOutMovies, actualCheckedOutMovies));
+        assertEquals(expectedAllAvailableMovies, actualAllAvailableMovies);
+        assertEquals(expectedCheckedOutMovies, actualCheckedOutMovies);
         assertEquals("Thank you! Enjoy the movie.", outputString);
     }
 
     @Test
     public void testCantCheckoutInvalidMovie() {
-        MovieCatalogue movieCatalogue = fillMovieCatalogue();
+        Movie itMovie = new Movie("I.T.", "Andrés Muschietti", "2017", 8, true);
         Movie thisIsTheEndMovie = new Movie("This is the end", "Seth Rogen/Steven Goldberg", "2013", 6, false);
+
+        ArrayList<Movie> movies = new ArrayList<>();
+        movies.add(itMovie);
+        movies.add(thisIsTheEndMovie);
+        MovieCatalogue movieCatalogue = new MovieCatalogue(movies);
 
         var outputString = movieCatalogue.handleCheckOut(thisIsTheEndMovie.name + "makesitinvalid");
         assertEquals("That movie is not available.", outputString);
@@ -58,26 +79,36 @@ public class MovieTests {
 
     @Test
     public void testCanCheckinMovieAndCatalogueReflectsThis() {
-        MovieCatalogue movieCatalogue = fillMovieCatalogue();
         Movie itMovie = new Movie("I.T.", "Andrés Muschietti", "2017", 8, true);
+        Movie thisIsTheEndMovie = new Movie("This is the end", "Seth Rogen/Steven Goldberg", "2013", 6, false);
+
+        ArrayList<Movie> movies = new ArrayList<>();
+        movies.add(itMovie);
+        movies.add(thisIsTheEndMovie);
+        MovieCatalogue movieCatalogue = new MovieCatalogue(movies);
 
         var outputString = movieCatalogue.handleCheckIn(itMovie.name);
 
         ArrayList<Movie> actualAllAvailableMovies = movieCatalogue.returnAllAvailableMovies();
-        ArrayList<Movie> expectedAllAvailableMovies = returnListOfMovies();
+        ArrayList<Movie> expectedAllAvailableMovies = movies;
 
         ArrayList<Movie> actualCheckedOutMovies = movieCatalogue.returnAllCheckedOutMovies();
         ArrayList<Movie> expectedCheckedOutMovies = new ArrayList<Movie>();
 
-        assertTrue(checkIfTwoListOfMoviesAreEqual(expectedAllAvailableMovies, actualAllAvailableMovies));
-        assertTrue(checkIfTwoListOfMoviesAreEqual(expectedCheckedOutMovies, actualCheckedOutMovies));
+        assertEquals(expectedAllAvailableMovies, actualAllAvailableMovies);
+        assertEquals(expectedCheckedOutMovies, actualCheckedOutMovies);
         assertEquals("Thank you for returning the movie.", outputString);
     }
 
     @Test
     public void testCantCheckInInvalidMovie() {
-        MovieCatalogue movieCatalogue = fillMovieCatalogue();
         Movie itMovie = new Movie("I.T.", "Andrés Muschietti", "2017", 8, true);
+        Movie thisIsTheEndMovie = new Movie("This is the end", "Seth Rogen/Steven Goldberg", "2013", 6, false);
+
+        ArrayList<Movie> movies = new ArrayList<>();
+        movies.add(itMovie);
+        movies.add(thisIsTheEndMovie);
+        MovieCatalogue movieCatalogue = new MovieCatalogue(movies);
 
         var outputString = movieCatalogue.handleCheckIn(itMovie.name + "makesitinvalid");
         assertEquals("That is not a valid movie to return.", outputString);
@@ -85,7 +116,13 @@ public class MovieTests {
 
     @Test
     public void testGeneratedStringAllAvailableMovies() {
-        MovieCatalogue movieCatalogue = fillMovieCatalogue();
+        Movie itMovie = new Movie("I.T.", "Andrés Muschietti", "2017", 8, true);
+        Movie thisIsTheEndMovie = new Movie("This is the end", "Seth Rogen/Steven Goldberg", "2013", 6, false);
+
+        ArrayList<Movie> movies = new ArrayList<>();
+        movies.add(itMovie);
+        movies.add(thisIsTheEndMovie);
+        MovieCatalogue movieCatalogue = new MovieCatalogue(movies);
 
         String actualOutputString = movieCatalogue.generateFormattedStringAllAvailableMovies();
         String format = "%-" + movieCatalogue.getMoviesMaxNameLengthForPrintFormatting() + "s %-30s %-20s %-10s\n";
@@ -100,7 +137,13 @@ public class MovieTests {
 
     @Test
     public void testMaxNameLengthFunction() {
-        MovieCatalogue movieCatalogue = fillMovieCatalogue();
+        Movie itMovie = new Movie("I.T.", "Andrés Muschietti", "2017", 8, true);
+        Movie thisIsTheEndMovie = new Movie("This is the end", "Seth Rogen/Steven Goldberg", "2013", 6, false);
+
+        ArrayList<Movie> movies = new ArrayList<>();
+        movies.add(itMovie);
+        movies.add(thisIsTheEndMovie);
+        MovieCatalogue movieCatalogue = new MovieCatalogue(movies);
 
         int actualMaxLength = movieCatalogue.getMoviesMaxNameLengthForPrintFormatting();
         int expectedMaxLength = 25; //this is the end + 10
@@ -109,7 +152,13 @@ public class MovieTests {
 
     @Test
     public void testFindMovieByMovieTitle() {
-        MovieCatalogue movieCatalogue = fillMovieCatalogue();
+        Movie itMovie = new Movie("I.T.", "Andrés Muschietti", "2017", 8, true);
+        Movie thisIsTheEndMovie = new Movie("This is the end", "Seth Rogen/Steven Goldberg", "2013", 6, false);
+
+        ArrayList<Movie> movies = new ArrayList<>();
+        movies.add(itMovie);
+        movies.add(thisIsTheEndMovie);
+        MovieCatalogue movieCatalogue = new MovieCatalogue(movies);
 
         Movie movieFound = movieCatalogue.findMovieByMovieTitle("I.T.");
         assertEquals("I.T.", movieFound.name);
@@ -127,62 +176,16 @@ public class MovieTests {
 
     @Test
     public void testMenuListMovies() {
-        MovieCatalogue movieCatalogue = fillMovieCatalogue();
+        Movie itMovie = new Movie("I.T.", "Andrés Muschietti", "2017", 8, true);
+        Movie thisIsTheEndMovie = new Movie("This is the end", "Seth Rogen/Steven Goldberg", "2013", 6, false);
+
+        ArrayList<Movie> movies = new ArrayList<>();
+        movies.add(itMovie);
+        movies.add(thisIsTheEndMovie);
+        MovieCatalogue movieCatalogue = new MovieCatalogue(movies);
 
         BibliotecaApp app = new BibliotecaApp();
         app.movieCatalogue = movieCatalogue;
         assertEquals(movieCatalogue.generateFormattedStringAllAvailableMovies(), BibliotecaApp.handleMenuInputAndReturnResponse("4"));
-    }
-
-    public MovieCatalogue fillMovieCatalogue() {
-        MovieCatalogue movieCatalogue = new MovieCatalogue(returnListOfMovies());
-
-        return movieCatalogue;
-    }
-
-    public ArrayList<Movie> returnListOfMovies() {
-        Movie itMovie = new Movie("I.T.", "Andrés Muschietti", "2017", 8, true);
-        Movie thisIsTheEndMovie = new Movie("This is the end", "Seth Rogen/Steven Goldberg", "2013", 6, false);
-
-        ArrayList<Movie> movies = new ArrayList<>();
-        movies.add(itMovie);
-        movies.add(thisIsTheEndMovie);
-
-        return movies;
-    }
-
-    public boolean checkIfTwoListOfMoviesAreEqual(ArrayList<Movie> one, ArrayList<Movie> two) {
-        ArrayList<Movie> checkList = new ArrayList<Movie>();
-        int count = 0;
-        checkList.addAll(one);
-
-        for (Movie movie: checkList) {
-            for (Movie movie2: two) {
-                if (movie.name == movie2.name) {
-                    count++;
-                    break;
-                }
-            }
-        }
-        return (checkList.size() == count);
-    }
-
-    @Test
-    public void testcheckIfTwoListOfMoviesAreEqual() {
-        Movie itMovie = new Movie("I.T.", "Andrés Muschietti", "2017", 8, true);
-        Movie thisIsTheEndMovie = new Movie("This is the end", "Seth Rogen/Steven Goldberg", "2013", 6, false);
-
-        ArrayList<Movie> movies = new ArrayList<>();
-        movies.add(itMovie);
-        movies.add(thisIsTheEndMovie);
-
-        Movie itMovie2 = new Movie("I.T.", "Andrés Muschietti", "2017", 8, true);
-        Movie thisIsTheEndMovie2 = new Movie("This is the end", "Seth Rogen/Steven Goldberg", "2013", 6, false);
-
-        ArrayList<Movie> movies2 = new ArrayList<>();
-        movies2.add(itMovie);
-        movies2.add(thisIsTheEndMovie);
-
-        assertTrue(checkIfTwoListOfMoviesAreEqual(movies, movies2));
     }
 }
