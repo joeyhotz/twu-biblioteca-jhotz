@@ -8,63 +8,67 @@ import static org.junit.Assert.*;
 
 
 public class BookTests {
-    Book gotBook = new Book("A Game of Thrones", "George R. R. Martin", "01.08.1996");
-    Book hitchhickersBook = new Book("The Hitchhiker's Guide to the Galaxy", "Douglas Adam", "12.10.1979");
-    Book harryPotterBook = new Book("Harry Potter and The Philosophers Stone", "J.K. Rowling", "26.06.1997");
-
     @Test
     public void testReturnsAllBooks() {
-        ArrayList<Book> availableBooks = new ArrayList<>();
-        availableBooks.add(gotBook);
-        availableBooks.add(hitchhickersBook);
+        Book gotBook = new Book("A Game of Thrones", "George R. R. Martin", "01.08.1996", false);
+        Book hitchhickersBook = new Book("The Hitchhiker's Guide to the Galaxy", "Douglas Adam", "12.10.1979", false);
+        Book harryPotterBook = new Book("Harry Potter and The Philosophers Stone", "J.K. Rowling", "26.06.1997", true);
 
-        ArrayList<Book> checkedOutBooks = new ArrayList<>();
-        checkedOutBooks.add(harryPotterBook);
+        ArrayList<Book> books = new ArrayList<>();
+        books.add(gotBook);
+        books.add(hitchhickersBook);
+        books.add(harryPotterBook);
 
-        BookCatalogue bookCatalogue = new BookCatalogue(availableBooks, checkedOutBooks);
+        Catalogue catalogue = new Catalogue(books);
 
-        ArrayList<Book> actualAllBooks = bookCatalogue.returnAllBooks();
-        ArrayList<Book> expectedAllBooks = availableBooks;
-        expectedAllBooks.addAll(checkedOutBooks);
+        ArrayList<Book> actualAllBooks = catalogue.returnAllBooks();
+        ArrayList<Book> expectedAllBooks = books;
         assertEquals(expectedAllBooks, actualAllBooks);
     }
 
     @Test
     public void testReturnsAllAvailableBooks() {
-        ArrayList<Book> availableBooks = new ArrayList<>();
-        availableBooks.add(gotBook);
-        availableBooks.add(hitchhickersBook);
+        Book gotBook = new Book("A Game of Thrones", "George R. R. Martin", "01.08.1996", false);
+        Book hitchhickersBook = new Book("The Hitchhiker's Guide to the Galaxy", "Douglas Adam", "12.10.1979", false);
+        Book harryPotterBook = new Book("Harry Potter and The Philosophers Stone", "J.K. Rowling", "26.06.1997", true);
 
-        ArrayList<Book> checkedOutBooks = new ArrayList<>();
-        checkedOutBooks.add(harryPotterBook);
+        ArrayList<Book> books = new ArrayList<>();
+        books.add(gotBook);
+        books.add(hitchhickersBook);
+        books.add(harryPotterBook);
 
-        BookCatalogue bookCatalogue = new BookCatalogue(availableBooks, checkedOutBooks);
+        Catalogue catalogue = new Catalogue(books);
 
-        ArrayList<Book> actualAllAvailableBooks = bookCatalogue.returnAllAvailableBooks();
-        ArrayList<Book> expectedAllAvailableBooks = availableBooks;
+        ArrayList<Book> actualAllAvailableBooks = catalogue.returnAllAvailableBooks();
+        ArrayList<Book> expectedAllAvailableBooks = new ArrayList<>();
+        expectedAllAvailableBooks.add(gotBook);
+        expectedAllAvailableBooks.add(hitchhickersBook);
+
         assertEquals(expectedAllAvailableBooks, actualAllAvailableBooks);
     }
 
     @Test
     public void testCanCheckoutBookAndCatalogueReflectsThis() {
-        ArrayList<Book> availableBooks = new ArrayList<>();
-        availableBooks.add(gotBook);
-        availableBooks.add(hitchhickersBook);
-        availableBooks.add(harryPotterBook);
+        Book gotBook = new Book("A Game of Thrones", "George R. R. Martin", "01.08.1996", false);
+        Book hitchhickersBook = new Book("The Hitchhiker's Guide to the Galaxy", "Douglas Adam", "12.10.1979", false);
+        Book harryPotterBook = new Book("Harry Potter and The Philosophers Stone", "J.K. Rowling", "26.06.1997", true);
 
-        ArrayList<Book> checkedOutBooks = new ArrayList<>();
+        ArrayList<Book> books = new ArrayList<>();
+        books.add(gotBook);
+        books.add(hitchhickersBook);
+        books.add(harryPotterBook);
 
-        BookCatalogue bookCatalogue = new BookCatalogue(availableBooks, checkedOutBooks);
-        var outputString = bookCatalogue.handleCheckOutBook(gotBook.name);
+        Catalogue catalogue = new Catalogue(books);
+        var outputString = catalogue.handleCheckOutBook(gotBook.name);
 
-        ArrayList<Book> actualAllAvailableBooks = bookCatalogue.returnAllAvailableBooks();
+        ArrayList<Book> actualAllAvailableBooks = catalogue.returnAllAvailableBooks();
         ArrayList<Book> expectedAllAvailableBooks = new ArrayList<Book>();
         expectedAllAvailableBooks.add(hitchhickersBook);
-        expectedAllAvailableBooks.add(harryPotterBook);
 
-        ArrayList<Book> actualCheckedOutBooks = bookCatalogue.returnAllCheckedOutBooks();
+        ArrayList<Book> actualCheckedOutBooks = catalogue.returnAllCheckedOutBooks();
         ArrayList<Book> expectedCheckedOutBooks = new ArrayList<Book>();
         expectedCheckedOutBooks.add(gotBook);
+        expectedCheckedOutBooks.add(harryPotterBook);
 
         assertEquals(expectedAllAvailableBooks, actualAllAvailableBooks);
         assertEquals(expectedCheckedOutBooks, actualCheckedOutBooks);
@@ -73,37 +77,41 @@ public class BookTests {
 
     @Test
     public void testCantCheckoutInvalidBook() {
-        ArrayList<Book> availableBooks = new ArrayList<>();
-        availableBooks.add(gotBook);
-        availableBooks.add(hitchhickersBook);
-        availableBooks.add(harryPotterBook);
+        Book gotBook = new Book("A Game of Thrones", "George R. R. Martin", "01.08.1996", false);
+        Book hitchhickersBook = new Book("The Hitchhiker's Guide to the Galaxy", "Douglas Adam", "12.10.1979", false);
+        Book harryPotterBook = new Book("Harry Potter and The Philosophers Stone", "J.K. Rowling", "26.06.1997", true);
 
-        ArrayList<Book> checkedOutBooks = new ArrayList<>();
+        ArrayList<Book> books = new ArrayList<>();
+        books.add(gotBook);
+        books.add(hitchhickersBook);
+        books.add(harryPotterBook);
 
-        BookCatalogue bookCatalogue = new BookCatalogue(availableBooks, checkedOutBooks);
-        var outputString = bookCatalogue.handleCheckOutBook(gotBook.name + "makesitinvalid");
+        Catalogue catalogue = new Catalogue(books);
+        var outputString = catalogue.handleCheckOutBook(gotBook.name + "makesitinvalid");
         assertEquals("That book is not available.", outputString);
     }
 
     @Test
     public void testCanCheckinBookAndCatalogueReflectsThis() {
-        ArrayList<Book> availableBooks = new ArrayList<>();
-        availableBooks.add(hitchhickersBook);
-        availableBooks.add(harryPotterBook);
+        Book gotBook = new Book("A Game of Thrones", "George R. R. Martin", "01.08.1996", false);
+        Book hitchhickersBook = new Book("The Hitchhiker's Guide to the Galaxy", "Douglas Adam", "12.10.1979", false);
+        Book harryPotterBook = new Book("Harry Potter and The Philosophers Stone", "J.K. Rowling", "26.06.1997", true);
 
-        ArrayList<Book> checkedOutBooks = new ArrayList<>();
-        checkedOutBooks.add(gotBook);
+        ArrayList<Book> books = new ArrayList<>();
+        books.add(hitchhickersBook);
+        books.add(gotBook);
+        books.add(harryPotterBook);
 
-        BookCatalogue bookCatalogue = new BookCatalogue(availableBooks, checkedOutBooks);
-        var outputString = bookCatalogue.handleCheckInBook(gotBook.name);
+        Catalogue catalogue = new Catalogue(books);
+        var outputString = catalogue.handleCheckInBook(harryPotterBook.name);
 
-        ArrayList<Book> actualAllAvailableBooks = bookCatalogue.returnAllAvailableBooks();
+        ArrayList<Book> actualAllAvailableBooks = catalogue.returnAllAvailableBooks();
         ArrayList<Book> expectedAllAvailableBooks = new ArrayList<Book>();
         expectedAllAvailableBooks.add(hitchhickersBook);
-        expectedAllAvailableBooks.add(harryPotterBook);
         expectedAllAvailableBooks.add(gotBook);
+        expectedAllAvailableBooks.add(harryPotterBook);
 
-        ArrayList<Book> actualCheckedOutBooks = bookCatalogue.returnAllCheckedOutBooks();
+        ArrayList<Book> actualCheckedOutBooks = catalogue.returnAllCheckedOutBooks();
         ArrayList<Book> expectedCheckedOutBooks = new ArrayList<Book>();
 
         assertEquals(expectedAllAvailableBooks, actualAllAvailableBooks);
@@ -112,32 +120,37 @@ public class BookTests {
     }
 
     @Test
-    public void testCantCheckInvalidBook() {
-        ArrayList<Book> availableBooks = new ArrayList<>();
-        availableBooks.add(hitchhickersBook);
-        availableBooks.add(harryPotterBook);
+    public void testCantCheckInInvalidBook() {
+        Book gotBook = new Book("A Game of Thrones", "George R. R. Martin", "01.08.1996", false);
+        Book hitchhickersBook = new Book("The Hitchhiker's Guide to the Galaxy", "Douglas Adam", "12.10.1979", false);
+        Book harryPotterBook = new Book("Harry Potter and The Philosophers Stone", "J.K. Rowling", "26.06.1997", true);
 
-        ArrayList<Book> checkedOutBooks = new ArrayList<>();
-        checkedOutBooks.add(gotBook);
+        ArrayList<Book> books = new ArrayList<>();
+        books.add(hitchhickersBook);
+        books.add(harryPotterBook);
+        books.add(gotBook);
 
-        BookCatalogue bookCatalogue = new BookCatalogue(availableBooks, checkedOutBooks);
-        var outputString = bookCatalogue.handleCheckInBook(gotBook.name + "makesitinvalid");
+        Catalogue catalogue = new Catalogue(books);
+        var outputString = catalogue.handleCheckInBook(gotBook.name + "makesitinvalid");
         assertEquals("That is not a valid book to return.", outputString);
     }
 
     @Test
     public void testGeneratedStringAllAvailableBooks() {
-        ArrayList<Book> availableBooks = new ArrayList<>();
-        availableBooks.add(hitchhickersBook);
-        availableBooks.add(harryPotterBook);
-        BookCatalogue bookCatalogue = new BookCatalogue(availableBooks, null);
+        Book gotBook = new Book("A Game of Thrones", "George R. R. Martin", "01.08.1996", false);
+        Book hitchhickersBook = new Book("The Hitchhiker's Guide to the Galaxy", "Douglas Adam", "12.10.1979", false);
 
-        String actualOutputString = bookCatalogue.generateFormattedStringAllAvailableBooks();
-        String format = "%-" + bookCatalogue.getMaxNameLengthForPrintFormatting() + "s %-30s %-20s\n";
+        ArrayList<Book> books = new ArrayList<>();
+        books.add(hitchhickersBook);
+        books.add(gotBook);
+        Catalogue catalogue = new Catalogue(books);
+
+        String actualOutputString = catalogue.generateFormattedStringAllAvailableBooks();
+        String format = "%-" + catalogue.getMaxNameLengthForPrintFormatting() + "s %-30s %-20s\n";
         String expectedOutputString = "Available Books\n----------------\n" + String.format(format, "BOOK NAME", "AUTHOR", "YEAR PUBLISHED") + "\n";
 
-        for(Book book: availableBooks) {
-            expectedOutputString = expectedOutputString.concat(String.format(format, book.name, book.author, book.yearPublished));
+        for(Book book: books) {
+            expectedOutputString = expectedOutputString.concat(String.format(format, book.name, book.author, book.year));
         }
 
         assertEquals(expectedOutputString, actualOutputString);
@@ -145,74 +158,34 @@ public class BookTests {
 
     @Test
     public void testMaxNameLengthFunction() {
-        ArrayList<Book> availableBooks = new ArrayList<>();
-        availableBooks.add(gotBook);
-        availableBooks.add(harryPotterBook);
-        BookCatalogue bookCatalogue = new BookCatalogue(availableBooks, null);
+        Book gotBook = new Book("A Game of Thrones", "George R. R. Martin", "01.08.1996", false);
+        Book hitchhickersBook = new Book("The Hitchhiker's Guide to the Galaxy", "Douglas Adam", "12.10.1979", false);
+        Book harryPotterBook = new Book("Harry Potter and The Philosophers Stone", "J.K. Rowling", "26.06.1997", false);
 
-        int actualMaxLength = bookCatalogue.getMaxNameLengthForPrintFormatting();
-        int expectedMaxLength = availableBooks.get(1).name.length() + 10;
+        ArrayList<Book> books = new ArrayList<>();
+        books.add(gotBook);
+        books.add(hitchhickersBook);
+        books.add(harryPotterBook);
+        Catalogue catalogue = new Catalogue(books);
+
+        int actualMaxLength = catalogue.getMaxNameLengthForPrintFormatting();
+        int expectedMaxLength = 49; //harry potter + 10
         assertEquals(expectedMaxLength, actualMaxLength);
     }
 
     @Test
     public void testFindBookByBookTitle() {
-        ArrayList<Book> availableBooks = new ArrayList<>();
-        availableBooks.add(hitchhickersBook);
-        availableBooks.add(harryPotterBook);
-        BookCatalogue bookCatalogue = new BookCatalogue(availableBooks, null);
+        Book gotBook = new Book("A Game of Thrones", "George R. R. Martin", "01.08.1996", false);
+        Book hitchhickersBook = new Book("The Hitchhiker's Guide to the Galaxy", "Douglas Adam", "12.10.1979", false);
+        Book harryPotterBook = new Book("Harry Potter and The Philosophers Stone", "J.K. Rowling", "26.06.1997", true);
 
-        Book bookFound = bookCatalogue.findBookByBookTitle("Harry Potter and The Philosophers Stone");
+        ArrayList<Book> books = new ArrayList<>();
+        books.add(hitchhickersBook);
+        books.add(harryPotterBook);
+        Catalogue catalogue = new Catalogue(books);
+
+        Book bookFound = catalogue.findBookByBookTitle("Harry Potter and The Philosophers Stone");
         assertEquals(harryPotterBook, bookFound);
-    }
-
-    @Test
-    public void testBookIsAvailable() {
-        ArrayList<Book> availableBooks = new ArrayList<>();
-        availableBooks.add(hitchhickersBook);
-        availableBooks.add(harryPotterBook);
-        ArrayList<Book> checkedOutBooks = new ArrayList<>();
-        checkedOutBooks.add(gotBook);
-        BookCatalogue bookCatalogue = new BookCatalogue(availableBooks, checkedOutBooks);
-
-        assertTrue(bookCatalogue.bookIsAvailable(hitchhickersBook));
-    }
-
-    @Test
-    public void testBookIsAvailableReturnsNullIfItsNot() {
-        ArrayList<Book> availableBooks = new ArrayList<>();
-        availableBooks.add(hitchhickersBook);
-        availableBooks.add(harryPotterBook);
-        ArrayList<Book> checkedOutBooks = new ArrayList<>();
-        checkedOutBooks.add(gotBook);
-        BookCatalogue bookCatalogue = new BookCatalogue(availableBooks, checkedOutBooks);
-
-        assertTrue(!bookCatalogue.bookIsAvailable(gotBook));
-    }
-
-
-    @Test
-    public void testBookIsCheckedOut() {
-        ArrayList<Book> availableBooks = new ArrayList<>();
-        availableBooks.add(hitchhickersBook);
-        availableBooks.add(harryPotterBook);
-        ArrayList<Book> checkedOutBooks = new ArrayList<>();
-        checkedOutBooks.add(gotBook);
-        BookCatalogue bookCatalogue = new BookCatalogue(availableBooks, checkedOutBooks);
-
-        assertTrue(bookCatalogue.bookIsCheckedOut(gotBook));
-    }
-
-    @Test
-    public void testBookIsCheckedOutReturnsNullIfItsAvailable() {
-        ArrayList<Book> availableBooks = new ArrayList<>();
-        availableBooks.add(hitchhickersBook);
-        availableBooks.add(harryPotterBook);
-        ArrayList<Book> checkedOutBooks = new ArrayList<>();
-        checkedOutBooks.add(gotBook);
-        BookCatalogue bookCatalogue = new BookCatalogue(availableBooks, checkedOutBooks);
-
-        assertTrue(!bookCatalogue.bookIsCheckedOut(harryPotterBook));
     }
 
     @Test
@@ -227,13 +200,18 @@ public class BookTests {
 
     @Test
     public void testMenuListBooks() {
-        ArrayList<Book> availableBooks = new ArrayList<>();
-        availableBooks.add(gotBook);
-        availableBooks.add(hitchhickersBook);
-        ArrayList<Book> checkedOutBooks = new ArrayList<>();
-        checkedOutBooks.add(harryPotterBook);
-        BookCatalogue bookCatalogue = new BookCatalogue(availableBooks, checkedOutBooks);
+        Book gotBook = new Book("A Game of Thrones", "George R. R. Martin", "01.08.1996", false);
+        Book hitchhickersBook = new Book("The Hitchhiker's Guide to the Galaxy", "Douglas Adam", "12.10.1979", false);
+        Book harryPotterBook = new Book("Harry Potter and The Philosophers Stone", "J.K. Rowling", "26.06.1997", true);
 
-        assertEquals(bookCatalogue.generateFormattedStringAllAvailableBooks(), BibliotecaApp.handleMenuInputAndReturnResponse("1"));
+        ArrayList<Book> books = new ArrayList<>();
+        books.add(gotBook);
+        books.add(hitchhickersBook);
+        books.add(harryPotterBook);
+        Catalogue catalogue = new Catalogue(books);
+
+        BibliotecaApp app = new BibliotecaApp();
+        app.catalogue = catalogue;
+        assertEquals(catalogue.generateFormattedStringAllAvailableBooks(), BibliotecaApp.handleMenuInputAndReturnResponse("1"));
     }
 }

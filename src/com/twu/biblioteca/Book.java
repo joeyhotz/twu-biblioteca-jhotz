@@ -1,13 +1,12 @@
 package com.twu.biblioteca;
 
-public class Book {
-    public String name;
+public class Book extends LibraryItem {
     public String author;
-    public String yearPublished;
 
-    public Book(String name, String author, String yearPublished) {
+    public Book(String name, String author, String yearPublished, boolean checkedOut) {
         this.name = name;
         this.author = author;
-        this.yearPublished = yearPublished;
+        this.year = yearPublished;
+        this.checkedOut = checkedOut;
     }
 }

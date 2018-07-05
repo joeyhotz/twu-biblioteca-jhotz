@@ -3,7 +3,7 @@ package com.twu.biblioteca;
 import java.util.Scanner;
 
 public class BibliotecaApp {
-    public static BookCatalogue bookCatalogue = new BookCatalogue();
+    public static Catalogue catalogue = new Catalogue();
     private static Scanner sc = new Scanner(System.in);
     public static UserAccount loggedInAccount = null;
 
@@ -43,11 +43,14 @@ public class BibliotecaApp {
     public static String handleMenuInputAndReturnResponse(String input) {
         switch (input) {
             case "1": return handleListBooks();
-            case "2": displayLogin();
+            case "2":
+                displayLogin();
                 return handleBookCheckOut();
-            case "3": displayLogin();
+            case "3":
+                displayLogin();
                 return handleBookCheckIn();
-            case "4": displayLogin();
+            case "4":
+                displayLogin();
                 return handleLoginOrViewAccount();
             case "5": return "Goodbye!";
 
@@ -61,19 +64,19 @@ public class BibliotecaApp {
     }
 
     private static String handleListBooks() {
-        return bookCatalogue.generateFormattedStringAllAvailableBooks();
+        return catalogue.generateFormattedStringAllAvailableBooks();
     }
 
     private static String handleBookCheckIn() {
         if (!loggedIn()) return "You must be logged in to continue";
         printToConsole("Enter your book title here: ");
-        return bookCatalogue.handleCheckInBook(returnUserInput());
+        return catalogue.handleCheckInBook(returnUserInput());
     }
 
     private static String handleBookCheckOut() {
         if (!loggedIn()) return "You must be logged in to continue";
         printToConsole("Enter your book title here: ");
-        return bookCatalogue.handleCheckOutBook(returnUserInput());
+        return catalogue.handleCheckOutBook(returnUserInput());
     }
 
     public static boolean loggedIn() {
