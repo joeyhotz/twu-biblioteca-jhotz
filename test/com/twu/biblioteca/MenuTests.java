@@ -35,8 +35,11 @@ public class MenuTests {
         String expectedOutput = "1: List Books\n" +
                 "2: Checkout Book\n" +
                 "3: Return Book\n" +
-                "4: Login\n" +
-                "5: Quit\n\n";
+                "4: List Movies\n" +
+                "5: Checkout Movie\n" +
+                "6: Return Movie\n" +
+                "7: Login\n" +
+                "8: Quit\n\n";
         BibliotecaApp instance = new BibliotecaApp();
         instance.loggedInAccount = null;
         String actualOutput = instance.generateMenuStringToDisplay();
@@ -48,8 +51,11 @@ public class MenuTests {
         String expectedOutput = "1: List Books\n" +
                 "2: Checkout Book\n" +
                 "3: Return Book\n" +
-                "4: My Account\n" +
-                "5: Quit\n\n";
+                "4: List Movies\n" +
+                "5: Checkout Movie\n" +
+                "6: Return Movie\n" +
+                "7: My Account\n" +
+                "8: Quit\n\n";
         BibliotecaApp instance = new BibliotecaApp();
         instance.loggedInAccount = new UserAccount("123", "test", "George", "george@george.com", "03123");
         String actualOutput = instance.generateMenuStringToDisplay();

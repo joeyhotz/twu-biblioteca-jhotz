@@ -2,10 +2,10 @@ package com.twu.biblioteca;
 
 import java.util.ArrayList;
 
-public class Catalogue {
+public class BookCatalogue {
     private ArrayList<Book> books = new ArrayList<>();
 
-    public Catalogue() {
+    public BookCatalogue() {
         //for demo
         Book gotBook = new Book("A Game of Thrones", "George R. R. Martin", "01.08.1996", true);
         Book hitchhickersBook = new Book("The Hitchhiker's Guide to the Galaxy", "Douglas Adam", "12.10.1979", true);
@@ -15,7 +15,7 @@ public class Catalogue {
         books.add(harryPotterBook);
     }
 
-    public Catalogue(ArrayList<Book> books) {
+    public BookCatalogue(ArrayList<Book> books) {
         this.books = books;
     }
 
@@ -40,7 +40,7 @@ public class Catalogue {
     }
 
     public String generateFormattedStringAllAvailableBooks() {
-        String format = "%-" + getMaxNameLengthForPrintFormatting() + "s %-30s %-20s\n";
+        String format = "%-" + getBooksMaxNameLengthForPrintFormatting() + "s %-30s %-20s\n";
         String output = "Available Books\n----------------\n" + String.format(format, "BOOK NAME", "AUTHOR", "YEAR PUBLISHED") + "\n";
 
         for (Book book: returnAllAvailableBooks()) {
@@ -49,7 +49,7 @@ public class Catalogue {
         return output;
     }
 
-    public String handleCheckOutBook(String bookTitle) {
+    public String handleCheckOut(String bookTitle) {
         Book book = findBookByBookTitle(bookTitle);
         if (book == null) return("That book is not available.");
         if (!book.checkedOut) {
@@ -60,7 +60,7 @@ public class Catalogue {
         }
     }
 
-    public String handleCheckInBook(String bookTitle) {
+    public String handleCheckIn(String bookTitle) {
         Book book = findBookByBookTitle(bookTitle);
         if (book == null) return("That is not a valid book to return.");
         if (book.checkedOut) {
@@ -80,7 +80,7 @@ public class Catalogue {
         return null;
     }
 
-    public int getMaxNameLengthForPrintFormatting() {
+    public int getBooksMaxNameLengthForPrintFormatting() {
         int max = 0;
         for (Book book: returnAllAvailableBooks()) {
             if (book.name.length() > max) max = book.name.length();

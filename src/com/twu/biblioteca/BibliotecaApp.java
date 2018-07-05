@@ -3,7 +3,8 @@ package com.twu.biblioteca;
 import java.util.Scanner;
 
 public class BibliotecaApp {
-    public static Catalogue catalogue = new Catalogue();
+    public static BookCatalogue bookCatalogue = new BookCatalogue();
+    public static MovieCatalogue movieCatalogue = new MovieCatalogue();
     private static Scanner sc = new Scanner(System.in);
     public static UserAccount loggedInAccount = null;
 
@@ -50,9 +51,17 @@ public class BibliotecaApp {
                 displayLogin();
                 return handleBookCheckIn();
             case "4":
+                return handleListMovies();
+            case "5":
+                displayLogin();
+                return handleMovieCheckOut();
+            case "6":
+                displayLogin();
+                return handleMovieCheckIn();
+            case "7":
                 displayLogin();
                 return handleLoginOrViewAccount();
-            case "5": return "Goodbye!";
+            case "8": return "Goodbye!";
 
             default:  return "Select a valid option! Try again:";
         }
@@ -64,19 +73,35 @@ public class BibliotecaApp {
     }
 
     private static String handleListBooks() {
-        return catalogue.generateFormattedStringAllAvailableBooks();
+        return bookCatalogue.generateFormattedStringAllAvailableBooks();
     }
 
     private static String handleBookCheckIn() {
         if (!loggedIn()) return "You must be logged in to continue";
         printToConsole("Enter your book title here: ");
-        return catalogue.handleCheckInBook(returnUserInput());
+        return bookCatalogue.handleCheckIn(returnUserInput());
     }
 
     private static String handleBookCheckOut() {
         if (!loggedIn()) return "You must be logged in to continue";
         printToConsole("Enter your book title here: ");
-        return catalogue.handleCheckOutBook(returnUserInput());
+        return bookCatalogue.handleCheckOut(returnUserInput());
+    }
+
+    private static String handleListMovies() {
+        return movieCatalogue.generateFormattedStringAllAvailableMovies();
+    }
+
+    private static String handleMovieCheckIn() {
+        if (!loggedIn()) return "You must be logged in to continue";
+        printToConsole("Enter your movie title here: ");
+        return movieCatalogue.handleCheckIn(returnUserInput());
+    }
+
+    private static String handleMovieCheckOut() {
+        if (!loggedIn()) return "You must be logged in to continue";
+        printToConsole("Enter your movie title here: ");
+        return movieCatalogue.handleCheckOut(returnUserInput());
     }
 
     public static boolean loggedIn() {
@@ -92,8 +117,11 @@ public class BibliotecaApp {
         String output = "1: List Books\n" +
                 "2: Checkout Book\n" +
                 "3: Return Book\n" +
-                "4: " + accountString + "\n" +
-                "5: Quit\n\n";
+                "4: List Movies\n" +
+                "5: Checkout Movie\n" +
+                "6: Return Movie\n" +
+                "7: " + accountString + "\n" +
+                "8: Quit\n\n";
         return output;
     }
 

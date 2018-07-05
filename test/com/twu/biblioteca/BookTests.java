@@ -19,9 +19,9 @@ public class BookTests {
         books.add(hitchhickersBook);
         books.add(harryPotterBook);
 
-        Catalogue catalogue = new Catalogue(books);
+        BookCatalogue bookCatalogue = new BookCatalogue(books);
 
-        ArrayList<Book> actualAllBooks = catalogue.returnAllBooks();
+        ArrayList<Book> actualAllBooks = bookCatalogue.returnAllBooks();
         ArrayList<Book> expectedAllBooks = books;
         assertEquals(expectedAllBooks, actualAllBooks);
     }
@@ -37,9 +37,9 @@ public class BookTests {
         books.add(hitchhickersBook);
         books.add(harryPotterBook);
 
-        Catalogue catalogue = new Catalogue(books);
+        BookCatalogue bookCatalogue = new BookCatalogue(books);
 
-        ArrayList<Book> actualAllAvailableBooks = catalogue.returnAllAvailableBooks();
+        ArrayList<Book> actualAllAvailableBooks = bookCatalogue.returnAllAvailableBooks();
         ArrayList<Book> expectedAllAvailableBooks = new ArrayList<>();
         expectedAllAvailableBooks.add(gotBook);
         expectedAllAvailableBooks.add(hitchhickersBook);
@@ -58,14 +58,14 @@ public class BookTests {
         books.add(hitchhickersBook);
         books.add(harryPotterBook);
 
-        Catalogue catalogue = new Catalogue(books);
-        var outputString = catalogue.handleCheckOutBook(gotBook.name);
+        BookCatalogue bookCatalogue = new BookCatalogue(books);
+        var outputString = bookCatalogue.handleCheckOut(gotBook.name);
 
-        ArrayList<Book> actualAllAvailableBooks = catalogue.returnAllAvailableBooks();
+        ArrayList<Book> actualAllAvailableBooks = bookCatalogue.returnAllAvailableBooks();
         ArrayList<Book> expectedAllAvailableBooks = new ArrayList<Book>();
         expectedAllAvailableBooks.add(hitchhickersBook);
 
-        ArrayList<Book> actualCheckedOutBooks = catalogue.returnAllCheckedOutBooks();
+        ArrayList<Book> actualCheckedOutBooks = bookCatalogue.returnAllCheckedOutBooks();
         ArrayList<Book> expectedCheckedOutBooks = new ArrayList<Book>();
         expectedCheckedOutBooks.add(gotBook);
         expectedCheckedOutBooks.add(harryPotterBook);
@@ -86,8 +86,8 @@ public class BookTests {
         books.add(hitchhickersBook);
         books.add(harryPotterBook);
 
-        Catalogue catalogue = new Catalogue(books);
-        var outputString = catalogue.handleCheckOutBook(gotBook.name + "makesitinvalid");
+        BookCatalogue bookCatalogue = new BookCatalogue(books);
+        var outputString = bookCatalogue.handleCheckOut(gotBook.name + "makesitinvalid");
         assertEquals("That book is not available.", outputString);
     }
 
@@ -102,16 +102,16 @@ public class BookTests {
         books.add(gotBook);
         books.add(harryPotterBook);
 
-        Catalogue catalogue = new Catalogue(books);
-        var outputString = catalogue.handleCheckInBook(harryPotterBook.name);
+        BookCatalogue bookCatalogue = new BookCatalogue(books);
+        var outputString = bookCatalogue.handleCheckIn(harryPotterBook.name);
 
-        ArrayList<Book> actualAllAvailableBooks = catalogue.returnAllAvailableBooks();
+        ArrayList<Book> actualAllAvailableBooks = bookCatalogue.returnAllAvailableBooks();
         ArrayList<Book> expectedAllAvailableBooks = new ArrayList<Book>();
         expectedAllAvailableBooks.add(hitchhickersBook);
         expectedAllAvailableBooks.add(gotBook);
         expectedAllAvailableBooks.add(harryPotterBook);
 
-        ArrayList<Book> actualCheckedOutBooks = catalogue.returnAllCheckedOutBooks();
+        ArrayList<Book> actualCheckedOutBooks = bookCatalogue.returnAllCheckedOutBooks();
         ArrayList<Book> expectedCheckedOutBooks = new ArrayList<Book>();
 
         assertEquals(expectedAllAvailableBooks, actualAllAvailableBooks);
@@ -130,8 +130,8 @@ public class BookTests {
         books.add(harryPotterBook);
         books.add(gotBook);
 
-        Catalogue catalogue = new Catalogue(books);
-        var outputString = catalogue.handleCheckInBook(gotBook.name + "makesitinvalid");
+        BookCatalogue bookCatalogue = new BookCatalogue(books);
+        var outputString = bookCatalogue.handleCheckIn(gotBook.name + "makesitinvalid");
         assertEquals("That is not a valid book to return.", outputString);
     }
 
@@ -143,10 +143,10 @@ public class BookTests {
         ArrayList<Book> books = new ArrayList<>();
         books.add(hitchhickersBook);
         books.add(gotBook);
-        Catalogue catalogue = new Catalogue(books);
+        BookCatalogue bookCatalogue = new BookCatalogue(books);
 
-        String actualOutputString = catalogue.generateFormattedStringAllAvailableBooks();
-        String format = "%-" + catalogue.getMaxNameLengthForPrintFormatting() + "s %-30s %-20s\n";
+        String actualOutputString = bookCatalogue.generateFormattedStringAllAvailableBooks();
+        String format = "%-" + bookCatalogue.getBooksMaxNameLengthForPrintFormatting() + "s %-30s %-20s\n";
         String expectedOutputString = "Available Books\n----------------\n" + String.format(format, "BOOK NAME", "AUTHOR", "YEAR PUBLISHED") + "\n";
 
         for(Book book: books) {
@@ -166,9 +166,9 @@ public class BookTests {
         books.add(gotBook);
         books.add(hitchhickersBook);
         books.add(harryPotterBook);
-        Catalogue catalogue = new Catalogue(books);
+        BookCatalogue bookCatalogue = new BookCatalogue(books);
 
-        int actualMaxLength = catalogue.getMaxNameLengthForPrintFormatting();
+        int actualMaxLength = bookCatalogue.getBooksMaxNameLengthForPrintFormatting();
         int expectedMaxLength = 49; //harry potter + 10
         assertEquals(expectedMaxLength, actualMaxLength);
     }
@@ -182,15 +182,15 @@ public class BookTests {
         ArrayList<Book> books = new ArrayList<>();
         books.add(hitchhickersBook);
         books.add(harryPotterBook);
-        Catalogue catalogue = new Catalogue(books);
+        BookCatalogue bookCatalogue = new BookCatalogue(books);
 
-        Book bookFound = catalogue.findBookByBookTitle("Harry Potter and The Philosophers Stone");
+        Book bookFound = bookCatalogue.findBookByBookTitle("Harry Potter and The Philosophers Stone");
         assertEquals(harryPotterBook, bookFound);
     }
 
     @Test
     public void testMenuGoodbye() {
-        assertEquals("Goodbye!", BibliotecaApp.handleMenuInputAndReturnResponse("5"));
+        assertEquals("Goodbye!", BibliotecaApp.handleMenuInputAndReturnResponse("8"));
     }
 
     @Test
@@ -208,10 +208,10 @@ public class BookTests {
         books.add(gotBook);
         books.add(hitchhickersBook);
         books.add(harryPotterBook);
-        Catalogue catalogue = new Catalogue(books);
+        BookCatalogue bookCatalogue = new BookCatalogue(books);
 
         BibliotecaApp app = new BibliotecaApp();
-        app.catalogue = catalogue;
-        assertEquals(catalogue.generateFormattedStringAllAvailableBooks(), BibliotecaApp.handleMenuInputAndReturnResponse("1"));
+        app.bookCatalogue = bookCatalogue;
+        assertEquals(bookCatalogue.generateFormattedStringAllAvailableBooks(), BibliotecaApp.handleMenuInputAndReturnResponse("1"));
     }
 }
