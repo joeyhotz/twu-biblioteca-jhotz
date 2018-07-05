@@ -30,13 +30,28 @@ public class MenuTests {
     }
 
     @Test
-    public void testMenuStringGeneration() {
+    public void testMenuStringGenerationNoAccount() {
         String expectedOutput = "1: List Books\n" +
                 "2: Checkout Book\n" +
                 "3: Return Book\n" +
-                "4: Quit\n" +
-                "5: My Account\n";
-        String actualOutput = BibliotecaApp.generateMenuStringToDisplay();
+                "4: Login\n" +
+                "5: Quit\n\n";
+        BibliotecaApp instance = new BibliotecaApp();
+        instance.loggedInAccount = null;
+        String actualOutput = instance.generateMenuStringToDisplay();
+        assertEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void testMenuStringGenerationLoggedInAccount() {
+        String expectedOutput = "1: List Books\n" +
+                "2: Checkout Book\n" +
+                "3: Return Book\n" +
+                "4: My Account\n" +
+                "5: Quit\n\n";
+        BibliotecaApp instance = new BibliotecaApp();
+        instance.loggedInAccount = new UserAccount("123", "test", "George", "george@george.com", "03123");
+        String actualOutput = instance.generateMenuStringToDisplay();
         assertEquals(expectedOutput, actualOutput);
     }
 }

@@ -220,7 +220,7 @@ public class BookTests {
 
     @Test
     public void testMenuGoodbye() {
-        assertEquals("Goodbye!", BibliotecaApp.handleInputAndReturnResponse("4"));
+        assertEquals("Goodbye!", BibliotecaApp.handleInputAndReturnResponse("5"));
     }
 
     @Test
