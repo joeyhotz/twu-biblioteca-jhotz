@@ -53,7 +53,7 @@ public class Catalogue {
         Book book = findBookByBookTitle(bookTitle);
         if (book == null) return("That book is not available.");
         if (!book.checkedOut) {
-            book.checkOut();
+            book.toggleCheckedOutStatus();
             return("Thank you! Enjoy the book.");
         } else {
             return("That book is not available.");
@@ -64,7 +64,7 @@ public class Catalogue {
         Book book = findBookByBookTitle(bookTitle);
         if (book == null) return("That is not a valid book to return.");
         if (book.checkedOut) {
-            book.checkIn();
+            book.toggleCheckedOutStatus();
             return("Thank you for returning the book.");
         } else {
             return("That is not a valid book to return.");

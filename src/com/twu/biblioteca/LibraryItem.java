@@ -5,11 +5,7 @@ public class LibraryItem {
     public String year;
     public boolean checkedOut;
 
-    public void checkOut() {
-        this.checkedOut = true;
-    }
-
-    public void checkIn() {
-        this.checkedOut = false;
+    public void toggleCheckedOutStatus() {
+        this.checkedOut = !this.checkedOut;
     }
 }
