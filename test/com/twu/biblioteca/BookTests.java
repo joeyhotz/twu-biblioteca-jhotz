@@ -59,7 +59,7 @@ public class BookTests {
         books.add(harryPotterBook);
 
         BookCatalogue bookCatalogue = new BookCatalogue(books);
-        var outputString = bookCatalogue.handleCheckOut(gotBook.name);
+        String outputString = bookCatalogue.handleCheckOut(gotBook.name);
 
         ArrayList<Book> actualAllAvailableBooks = bookCatalogue.returnAllAvailableBooks();
         ArrayList<Book> expectedAllAvailableBooks = new ArrayList<Book>();
@@ -87,7 +87,7 @@ public class BookTests {
         books.add(harryPotterBook);
 
         BookCatalogue bookCatalogue = new BookCatalogue(books);
-        var outputString = bookCatalogue.handleCheckOut(gotBook.name + "makesitinvalid");
+        String outputString = bookCatalogue.handleCheckOut(gotBook.name + "makesitinvalid");
         assertEquals("That book is not available.", outputString);
     }
 
@@ -103,7 +103,7 @@ public class BookTests {
         books.add(harryPotterBook);
 
         BookCatalogue bookCatalogue = new BookCatalogue(books);
-        var outputString = bookCatalogue.handleCheckIn(harryPotterBook.name);
+        String outputString = bookCatalogue.handleCheckIn(harryPotterBook.name);
 
         ArrayList<Book> actualAllAvailableBooks = bookCatalogue.returnAllAvailableBooks();
         ArrayList<Book> expectedAllAvailableBooks = new ArrayList<Book>();
@@ -131,7 +131,7 @@ public class BookTests {
         books.add(gotBook);
 
         BookCatalogue bookCatalogue = new BookCatalogue(books);
-        var outputString = bookCatalogue.handleCheckIn(gotBook.name + "makesitinvalid");
+        String outputString = bookCatalogue.handleCheckIn(gotBook.name + "makesitinvalid");
         assertEquals("That is not a valid book to return.", outputString);
     }
 

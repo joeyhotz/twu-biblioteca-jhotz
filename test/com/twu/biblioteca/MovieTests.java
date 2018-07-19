@@ -50,7 +50,7 @@ public class MovieTests {
         movies.add(thisIsTheEndMovie);
         MovieCatalogue movieCatalogue = new MovieCatalogue(movies);
 
-        var outputString = movieCatalogue.handleCheckOut(thisIsTheEndMovie.name);
+        String outputString = movieCatalogue.handleCheckOut(thisIsTheEndMovie.name);
 
         ArrayList<Movie> actualAllAvailableMovies = movieCatalogue.returnAllAvailableMovies();
         ArrayList<Movie> expectedAllAvailableMovies = new ArrayList<Movie>();
@@ -73,7 +73,7 @@ public class MovieTests {
         movies.add(thisIsTheEndMovie);
         MovieCatalogue movieCatalogue = new MovieCatalogue(movies);
 
-        var outputString = movieCatalogue.handleCheckOut(thisIsTheEndMovie.name + "makesitinvalid");
+        String outputString = movieCatalogue.handleCheckOut(thisIsTheEndMovie.name + "makesitinvalid");
         assertEquals("That movie is not available.", outputString);
     }
 
@@ -87,7 +87,7 @@ public class MovieTests {
         movies.add(thisIsTheEndMovie);
         MovieCatalogue movieCatalogue = new MovieCatalogue(movies);
 
-        var outputString = movieCatalogue.handleCheckIn(itMovie.name);
+        String outputString = movieCatalogue.handleCheckIn(itMovie.name);
 
         ArrayList<Movie> actualAllAvailableMovies = movieCatalogue.returnAllAvailableMovies();
         ArrayList<Movie> expectedAllAvailableMovies = movies;
@@ -110,7 +110,7 @@ public class MovieTests {
         movies.add(thisIsTheEndMovie);
         MovieCatalogue movieCatalogue = new MovieCatalogue(movies);
 
-        var outputString = movieCatalogue.handleCheckIn(itMovie.name + "makesitinvalid");
+        String outputString = movieCatalogue.handleCheckIn(itMovie.name + "makesitinvalid");
         assertEquals("That is not a valid movie to return.", outputString);
     }
 
