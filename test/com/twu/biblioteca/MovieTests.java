@@ -184,8 +184,7 @@ public class MovieTests {
         movies.add(thisIsTheEndMovie);
         MovieCatalogue movieCatalogue = new MovieCatalogue(movies);
 
-        BibliotecaApp app = new BibliotecaApp();
-        app.movieCatalogue = movieCatalogue;
+        BibliotecaApp app = new BibliotecaApp(null, movieCatalogue);
         assertEquals(movieCatalogue.generateFormattedStringAllAvailableMovies(), BibliotecaApp.handleMenuInputAndReturnResponse("4"));
     }
 }

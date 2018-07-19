@@ -41,7 +41,7 @@ public class MenuTests {
                 "7: Login\n" +
                 "8: Quit\n\n";
         BibliotecaApp instance = new BibliotecaApp();
-        instance.loggedInAccount = null;
+        instance.logout();
         String actualOutput = instance.generateMenuStringToDisplay();
         assertEquals(expectedOutput, actualOutput);
     }
@@ -57,7 +57,7 @@ public class MenuTests {
                 "7: My Account\n" +
                 "8: Quit\n\n";
         BibliotecaApp instance = new BibliotecaApp();
-        instance.loggedInAccount = new UserAccount("123", "test", "George", "george@george.com", "03123");
+        instance.handleLogin("123", "test");
         String actualOutput = instance.generateMenuStringToDisplay();
         assertEquals(expectedOutput, actualOutput);
     }
@@ -65,14 +65,13 @@ public class MenuTests {
     @Test
     public void testLoggedIn() {
         BibliotecaApp instance = new BibliotecaApp();
-        instance.loggedInAccount = new UserAccount("123", "test", "George", "george@george.com", "03123");
+        instance.handleLogin("123", "test");
         assertTrue(instance.loggedIn());
     }
 
     @Test
     public void testNotLoggedIn() {
         BibliotecaApp instance = new BibliotecaApp();
-        instance.loggedInAccount = null;
         assertTrue(!instance.loggedIn());
     }
 }

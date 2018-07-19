@@ -210,8 +210,7 @@ public class BookTests {
         books.add(harryPotterBook);
         BookCatalogue bookCatalogue = new BookCatalogue(books);
 
-        BibliotecaApp app = new BibliotecaApp();
-        app.bookCatalogue = bookCatalogue;
+        BibliotecaApp app = new BibliotecaApp(bookCatalogue, null);
         assertEquals(bookCatalogue.generateFormattedStringAllAvailableBooks(), BibliotecaApp.handleMenuInputAndReturnResponse("1"));
     }
 }

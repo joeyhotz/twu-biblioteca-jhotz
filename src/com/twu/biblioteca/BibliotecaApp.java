@@ -3,10 +3,18 @@ package com.twu.biblioteca;
 import java.util.Scanner;
 
 public class BibliotecaApp {
-    public static BookCatalogue bookCatalogue = new BookCatalogue();
-    public static MovieCatalogue movieCatalogue = new MovieCatalogue();
+    private static BookCatalogue bookCatalogue = new BookCatalogue();
+    private static MovieCatalogue movieCatalogue = new MovieCatalogue();
     private static Scanner sc = new Scanner(System.in);
-    public static UserAccount loggedInAccount = null;
+    private static UserAccount loggedInAccount = null;
+
+    public BibliotecaApp(BookCatalogue bookCatalogue, MovieCatalogue movieCatalogue) {
+        if (bookCatalogue != null) this.bookCatalogue = bookCatalogue;
+        if (movieCatalogue != null) this.movieCatalogue = movieCatalogue;
+    }
+
+    public BibliotecaApp() { }
+
 
     public static void main(String[] args) {
         displayMenu();
@@ -28,6 +36,10 @@ public class BibliotecaApp {
     public static boolean handleLogin(String enteredLibraryNumber, String enteredPassword) {
         loggedInAccount = UserAccount.loginValid(enteredLibraryNumber, enteredPassword);
         return (loggedInAccount != null);
+    }
+
+    public void logout() {
+        loggedInAccount = null;
     }
 
     public static void displayMenu() {
