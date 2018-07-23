@@ -7,23 +7,16 @@ import static org.junit.Assert.*;
 public class UserAccountTests {
     @Test
     public void testLoginWorks() {
-        assertTrue(UserAccount.loginValid("123", "test") != null);
+        BibliotecaApp instance = new BibliotecaApp();
+        assertTrue(instance.getUserManager().login("123", "test"));
     }
 
     @Test
     public void testLoginDetectsInvalidAccount() {
-        assertTrue(UserAccount.loginValid("invalid", "invalid") == null);
+        BibliotecaApp instance = new BibliotecaApp();
+        assertTrue(!instance.getUserManager().login("invalid", "invalid"));
     }
 
-    @Test
-    public void testHandleLogin() {
-        assertTrue(BibliotecaApp.handleLogin("123", "test"));
-    }
-
-    @Test
-    public void testHandleInvalidLogin() {
-        assertTrue(!BibliotecaApp.handleLogin("invalid", "invalid"));
-    }
 
     @Test
     public void testBuildingCustomerInformationString() {
