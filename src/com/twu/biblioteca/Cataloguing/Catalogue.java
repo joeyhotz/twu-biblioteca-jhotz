@@ -3,6 +3,7 @@ package com.twu.biblioteca.Cataloguing;
 import com.twu.biblioteca.Items.LibraryItem;
 
 abstract class Catalogue implements CatalogueInterface {
+
     public LibraryItem findByTitle(String title) {
         for (LibraryItem item: getAll()) {
             if (item.getName().equals(title)) { return item; }
