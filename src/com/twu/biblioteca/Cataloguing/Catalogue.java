@@ -14,7 +14,6 @@ abstract class Catalogue implements CatalogueInterface {
         LibraryItem item = findByTitle(title);
         if (item == null) {
             System.out.print("\nThat is not available");
-            return;
         } else if (item.isAvailable()) {
             item.toggleCheckedOutStatus();
             System.out.printf("\nThank you! Enjoy the %s.", item.getClass().getSimpleName().toLowerCase());
@@ -27,7 +26,6 @@ abstract class Catalogue implements CatalogueInterface {
         LibraryItem item = findByTitle(title);
         if (item == null) {
             System.out.printf("\nThat is not valid to return.");
-            return;
         } else if (!item.isAvailable()) {
             item.toggleCheckedOutStatus();
             System.out.printf("\nThank you for returning the %s.", item.getClass().getSimpleName().toLowerCase());
