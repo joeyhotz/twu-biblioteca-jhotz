@@ -5,16 +5,7 @@ import com.twu.biblioteca.Items.Book;
 import java.util.ArrayList;
 
 public class BookCatalogue extends Catalogue {
-    private ArrayList<Book> books = new ArrayList<>();
-
-    public BookCatalogue() {
-        Book gotBook = new Book("A Game of Thrones", "George R. R. Martin", "01.08.1996", true);
-        Book hitchhickersBook = new Book("The Hitchhiker's Guide to the Galaxy", "Douglas Adam", "12.10.1979", true);
-        Book harryPotterBook = new Book("Harry Potter and The Philosophers Stone", "J.K. Rowling", "26.06.1997", false);
-        books.add(gotBook);
-        books.add(hitchhickersBook);
-        books.add(harryPotterBook);
-    }
+    private ArrayList<Book> books;
 
     public BookCatalogue(ArrayList<Book> books) {
         this.books = books;

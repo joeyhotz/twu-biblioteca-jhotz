@@ -1,22 +1,13 @@
 package com.twu.biblioteca;
 
 
-import com.twu.biblioteca.Cataloguing.BookCatalogue;
-import com.twu.biblioteca.Cataloguing.MovieCatalogue;
-
 public class BibliotecaApp {
     private Biblioteca biblioteca;
     private Menu menu;
     private UserManager userm;
 
     public BibliotecaApp() {
-        biblioteca = new Biblioteca();
-        userm = new UserManager();
-        menu = new Menu(biblioteca, userm);
-    }
-
-    public BibliotecaApp(BookCatalogue bc, MovieCatalogue mc) {
-        biblioteca = new Biblioteca(bc, mc);
+        biblioteca = new Biblioteca(Demo.demoBookCatalogue(), Demo.demoMovieCatalogue()); //loads demo catalogues
         userm = new UserManager();
         menu = new Menu(biblioteca, userm);
     }
@@ -33,9 +24,5 @@ public class BibliotecaApp {
 
     public UserManager getUserManager() {
         return userm;
-    }
-
-    public Menu getMenu() {
-        return menu;
     }
 }
